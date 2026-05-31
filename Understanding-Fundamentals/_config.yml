@@ -1,0 +1,12 @@
+title: Understanding Mathematics Through Intuition
+description: Intuition-first mathematics for machine learning, data science, and computational biology.
+
+author:
+  name: Debangana Chakraborty
+
+markdown: kramdown
+permalink: /blog/:categories/:title/
+
+kramdown:
+  input: GFM
+  hard_wrap: false
