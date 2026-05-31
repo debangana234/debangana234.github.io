@@ -202,17 +202,16 @@ footer {
       <li>A change in magnitude.</li>
       <li>A change in direction.</li>
     </ol>
-
-    <p>
-      In a large dataset, we may have thousands or even millions of vectors, each living in a high-dimensional space. As the dimensionality of the space increases, the number
-      of possible directions in which these vectors can change also increases.  Therefore, understanding a transformation by tracking every vector individually quickly
-  becomes unintuitive and difficult. 
-    </p>
     <figure>
       <img src="assets/eigenvectors-pca/matrix_linear_transformation.gif" width="560" alt="Matrix linear transformation">
       <figcaption> Figure 1: A matrix transformation maps the standard basis vectors \(e_1\) and \(e_2\) to \(Ae_1\) and \(Ae_2\). Since every vector can be written as a combination of the basis vectors, understanding how the basis vectors move helps us understand how the matrix transforms the entire space.
  </figcaption>
     </figure>
+    <p>
+      In a large dataset, we may have thousands or even millions of vectors, each living in a high-dimensional space. As the dimensionality of the space increases, the number
+      of possible directions in which these vectors can change also increases.  Therefore, understanding a transformation by tracking every vector individually quickly
+  becomes unintuitive and difficult. 
+    </p>
     
     <h2>Looking for Structure</h2>
     <p>
