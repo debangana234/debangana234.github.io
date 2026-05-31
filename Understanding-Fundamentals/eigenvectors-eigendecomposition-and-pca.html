@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eigenvectors, Eigendecomposition, and PCA: Building Intuition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+:root {
+  --text: #222;
+  --muted: #666;
+  --border: #e5e7eb;
+  --link: #0969da;
+  --bg-soft: #f6f8fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.65;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 22px;
+  color: var(--text);
+  background: #fff;
+}
+
+nav {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+nav a {
+  margin-right: 1rem;
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+}
+
+h1 {
+  margin-bottom: 0.25rem;
+}
+
+h2 {
+  margin-top: 2.4rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3rem;
+}
+
+h3 {
+  margin-top: 2rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-top: 0;
+}
+
+.post-meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+figure {
+  text-align: center;
+  margin: 2rem auto;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+figcaption {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+blockquote {
+  border-left: 4px solid var(--border);
+  margin-left: 0;
+  padding-left: 1rem;
+  color: #444;
+  background: #fafafa;
+}
+
+.math-display {
+  text-align: center;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+  background: #fff;
+}
+
+.card a {
+  color: var(--link);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+code {
+  background: var(--bg-soft);
+  padding: 0.15rem 0.3rem;
+  border-radius: 4px;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+</style>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script async id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+</head>
+
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/Understanding-Fundamentals/">Understanding Fundamentals</a>
+  </nav>
+
+  <article>
+    <h1>Eigenvectors, Eigendecomposition, and PCA: Building Intuition</h1>
+    <p class="post-meta">Linear Algebra · PCA · Covariance · Eigenvectors</p>
+
+    <p><strong>Understanding PCA starts with understanding eigenvectors.</strong></p>
+
+    <p>
+      Most explanations of eigendecomposition begin with characteristic polynomials and determinants.
+      This article takes a different approach. We shall focus on building the intuition by asking
+      the right questions in a step-by-step manner.
+    </p>
+
+    <h2>Matrices as Transformations</h2>
+
+    <p>
+      A matrix can be viewed as a <strong>linear transformation</strong> that maps input vectors
+      to output vectors while preserving vector addition and scalar multiplication.
+    </p>
+
+    <p>Geometrically, a transformation can:</p>
+
+    <ul>
+      <li>Rotate vectors</li>
+      <li>Stretch vectors</li>
+      <li>Compress vectors</li>
+      <li>Shear vectors</li>
+      <li>Reflect vectors</li>
+    </ul>
+
+    <p>
+      Imagine applying such a transformation to an entire collection of vectors. Most vectors will
+      experience two simultaneous changes:
+    </p>
+
+    <ol>
+      <li>A change in magnitude.</li>
+      <li>A change in direction.</li>
+    </ol>
+
+    <p>
+      As dimensions increase, tracking the behavior of every vector individually quickly becomes impossible.
+    </p>
+
+    <figure>
+      <img src="assets/eigenvectors-pca/matrix_linear_transformation.gif" width="560" alt="Matrix linear transformation">
+      <figcaption>Figure 1: A matrix transforming basis vectors.</figcaption>
+    </figure>
+
+    <h2>Looking for Structure</h2>
+
+    <p>
+      Imagine a square sheet of rubber. If we stretch and deform it, every point on the sheet moves differently.
+      Trying to track the motion of every point would be overwhelming. Instead, we would naturally look for
+      directions along which the deformation behaves predictably.
+    </p>
+
+    <p>
+      Matrices behave in a similar way. Although most vectors change both magnitude and direction under a transformation,
+      some special directions behave differently. Along these directions, vectors are only stretched or compressed;
+      they do not leave their original line.
+    </p>
+
+    <p>
+      These special directions are called <strong>eigenvector directions</strong>.
+      Any vector lying along one of these directions is called an <strong>eigenvector</strong>.
+    </p>
+
+    <figure>
+      <img src="assets/eigenvectors-pca/eigenvector_direction_visualization.gif" width="560" alt="Eigenvector direction visualization">
+      <figcaption>Figure 2: Eigenvectors preserve their direction under a transformation.</figcaption>
+    </figure>
+
+    <h2>Why Are Eigenvectors Useful?</h2>
+
+    <p>
+      Let us understand this using a simple example from our high school physics book.
+    </p>
+
+    <p>
+      Suppose a force acts on an object at an angle. Rather than analyzing the force as a single entity,
+      we often decompose it into simpler components along the horizontal and vertical directions.
+      Instead of working with one complicated force, we work with two simpler components whose effects
+      can be analyzed independently.
+    </p>
+
+    <figure>
+      <img src="assets/eigenvectors-pca/force_components_cos_sin.png" width="560" alt="Force decomposition into components">
+      <figcaption>Figure 3: Demonstrating components of a force.</figcaption>
+    </figure>
+
+    <p>
+      The key idea behind the cited example is not the mathematics of force decomposition itself,
+      but the objective behind it: complex patterns often become easier to understand when they are broken
+      into simpler components acting along independent directions. Eigendecomposition follows a similar idea.
+    </p>
+
+    <p>
+      A matrix transformation may simultaneously rotate, stretch, compress, and shear vectors.
+      When this is viewed in the standard coordinate system, all of these effects are mixed together,
+      making the transformation difficult to interpret.
+    </p>
+
+    <p>
+      Therefore, instead of analyzing the transformation in the realm of its original coordinates,
+      we search for special directions along which the transformation behaves as simply as possible.
+      Along these directions, the transformation no longer mixes effects together. It acts only by
+      stretching or compressing vectors.
+    </p>
+
+    <p>This naturally leads to a deeper question:</p>
+
+    <blockquote>
+      Can we find a coordinate system built from these special directions so that the entire transformation becomes easier to understand?
+    </blockquote>
+
+    <p>
+      To answer that question, we first need to understand the idea of a basis. In very naive terms:
+      a mathematical basis is a set of directions used to describe every vector in a space. Any vector
+      can be written as a unique combination of these basis directions. In this sense, a basis acts like
+      a coordinate system: it does not change the vector itself, but it determines how we describe and
+      interpret that vector.
+    </p>
+
+    <p>
+      So far, we have been describing vectors using the familiar coordinate axes. This choice is convenient,
+      but it is arbitrary. If we choose a different basis, the vector itself remains unchanged and only its
+      coordinates change. This raises an interesting possibility: could there be a basis in which a transformation
+      becomes easier to understand?
+    </p>
+
+    <p>
+      Since eigenvectors identify the special directions along which a transformation acts only by stretching
+      or compressing, one could ask whether these directions themselves can be used as basis vectors.
+      The answer is yes. When a basis is formed from the eigenvectors of a transformation, we call it the
+      <strong>eigenbasis</strong>.
+    </p>
+
+    <h2>From Eigendecomposition to Principal Component Analysis</h2>
+
+    <p>
+      Now that we understand the intuition behind eigendecomposition, let us see how the same idea can be used
+      to understand data.
+    </p>
+
+    <p>
+      Imagine a dataset consisting of many samples and many features. Each sample can be viewed as a vector
+      in a high-dimensional space. For example, in a biological dataset, each sample might represent a cell
+      and each dimension might represent the expression level of a gene.
+    </p>
+
+    <p>
+      Although the data lives in a high-dimensional space, the information it contains is often concentrated
+      along only a few important directions.
+    </p>
+
+    <p>
+      To understand this better, let us consider a dataset containing multiple features. At first, it may seem
+      that each feature contributes unique information. However, many features are often correlated with one another.
+      For example, consider a dataset containing measurements of height and arm span. Taller individuals generally
+      tend to have larger arm spans. As a result, both features often convey similar information about the overall
+      size of a person.
+    </p>
+
+    <p>
+      If two features vary together, storing both may introduce redundancy. Hence, we would like to represent the data
+      using a smaller set of features that capture the essential information without repeatedly describing the same pattern.
+    </p>
+
+    <p>This raises two important questions:</p>
+
+    <ul>
+      <li>Which directions in the data contain the most variation?</li>
+      <li>Which directions provide new information rather than repeating information already captured by other directions?</li>
+    </ul>
+
+    <p>
+      Principal Component Analysis addresses both questions simultaneously. It searches for a new set of directions,
+      called <strong>principal components</strong>, that:
+    </p>
+
+    <ul>
+      <li>capture as much variation in the data as possible,</li>
+      <li>remain independent, or uncorrelated, from one another,</li>
+      <li>provide a compact, non-redundant representation of the data.</li>
+    </ul>
+
+    <p>
+      The first principal component captures the largest possible amount of variation in the dataset.
+      The second principal component captures the largest remaining variation while remaining independent of the first.
+      This process continues until all variation in the data has been accounted for.
+    </p>
+
+    <figure>
+      <img src="assets/eigenvectors-pca/pca_simple_diagram.png" width="600" alt="PCA principal components">
+      <figcaption>
+        Figure 4: Principal components of a correlated dataset. The first component captures the dominant variation,
+        while the second component captures the residual variation orthogonal to the first.
+      </figcaption>
+    </figure>
+
+    <h2>Covariance as a Measure of Redundancy</h2>
+
+    <p>
+      To identify informative and non-redundant directions in the data, we first need a way to measure how features
+      vary together. This is precisely the role of the covariance matrix.
+    </p>
+
+    <p>
+      Suppose our dataset is represented by a matrix \(X\), where each row corresponds to a sample and each column
+      corresponds to a feature. The covariance matrix is given by the following formula:
+    </p>
+
+    <figure>
+      <img src="assets/eigenvectors-pca/covariance_matrix_equation.png" width="520" alt="Covariance matrix equation">
+    </figure>
+
+    <p>
+      The element \(C_{ij}\) of the covariance matrix quantifies the covariance between feature \(i\) and feature \(j\).
+    </p>
+
+    <ul>
+      <li>Large positive values indicate that the features tend to increase together.</li>
+      <li>Large negative values indicate that one feature tends to increase while the other decreases.</li>
+      <li>Values close to zero indicate little linear relationship between the features.</li>
+    </ul>
+
+    <p>
+      The covariance matrix therefore summarizes the redundancy structure of the dataset. If many features are strongly
+      correlated, the covariance matrix will contain large off-diagonal entries, indicating that information is being repeated
+      across multiple dimensions.
+    </p>
+
+    <p>
+      If our goal is to discover a new set of directions that capture the most important variation while removing redundancy,
+      then the covariance matrix appears to contain exactly the information we need.
+    </p>
+
+    <p>
+      The covariance matrix tells us how variation is distributed throughout the dataset and how different features vary together.
+    </p>
+
+    <p>This naturally leads to the next question:</p>
+
+    <blockquote>
+      <strong>How can the covariance matrix itself reveal these important directions?</strong>
+    </blockquote>
+
+    <p>To answer this question, we turn to eigendecomposition.</p>
+
+    <h2>Finding the Principal Components</h2>
+
+    <p>To find these directions, we perform an eigendecomposition of the covariance matrix.</p>
+
+    <p>
+      This is exactly where eigendecomposition enters the picture. We have already discussed that eigendecomposition searches
+      for special directions along which a transformation behaves independently. The covariance matrix can also be viewed as
+      a linear transformation acting on directions in feature space.
+    </p>
+
+    <p>Performing an eigendecomposition of the covariance matrix gives</p>
+
+    <div class="math-display">
+      \[
+      C = Q\Lambda Q^T
+      \]
+    </div>
+
+    <p>where</p>
+
+    <ul>
+      <li>\(Q\) is a matrix whose columns are the eigenvectors of the covariance matrix.</li>
+      <li>\(\Lambda\) is a diagonal matrix containing the corresponding eigenvalues.</li>
+    </ul>
+
+    <div class="math-display">
+      \[
+      Q =
+      \begin{bmatrix}
+      | & | & & | \\
+      q_1 & q_2 & \cdots & q_d \\
+      | & | & & |
+      \end{bmatrix}
+      \]
+    </div>
+
+    <div class="math-display">
+      \[
+      \Lambda =
+      \begin{bmatrix}
+      \lambda_1 & 0 & \cdots & 0 \\
+      0 & \lambda_2 & \cdots & 0 \\
+      \vdots & \vdots & \ddots & \vdots \\
+      0 & 0 & \cdots & \lambda_d
+      \end{bmatrix}
+      \]
+    </div>
+
+    <p>
+      The eigenvectors define a new basis for describing the data. Because the covariance matrix is symmetric,
+      its eigenvectors are orthogonal to one another. Consequently, they provide <strong>independent</strong>,
+      <strong>non-redundant</strong> directions in feature space.
+    </p>
+
+    <p>The eigenvalues quantify how much variance exists along each of these directions:</p>
+
+    <ul>
+      <li>Large eigenvalues correspond to directions containing substantial variation.</li>
+      <li>Small eigenvalues correspond to directions containing little variation.</li>
+    </ul>
+
+    <p>This provides PCA a simple intuition:</p>
+
+    <ol>
+      <li>Compute the covariance matrix.</li>
+      <li>Perform eigendecomposition.</li>
+      <li>Sort the eigenvectors by decreasing eigenvalue.</li>
+      <li>Keep the eigenvectors associated with the largest eigenvalues.</li>
+      <li>Discard the remaining directions.</li>
+    </ol>
+
+    <p>The retained eigenvectors become the principal components.</p>
+
+    <p>
+      If \(Q_k\) denotes the matrix containing only the top \(k\) eigenvectors, the data can be projected
+      into a lower-dimensional space as
+    </p>
+
+    <div class="math-display">
+      \[
+      Z = XQ_k
+      \]
+    </div>
+
+    <p>where</p>
+
+    <div class="math-display">
+      \[
+      X \in \mathbb{R}^{n \times d}, \qquad
+      Q_k \in \mathbb{R}^{d \times k}, \qquad
+      Z \in \mathbb{R}^{n \times k}
+      \]
+    </div>
+
+    <p>
+      By projecting the data onto these principal directions, PCA preserves most of the variation in the dataset
+      while removing redundant dimensions. Thus, the same eigenvectors that simplified a matrix transformation now
+      reveal the fundamental structure of the data itself.
+    </p>
+  </article>
+
+  <footer>
+    <a href="/Understanding-Fundamentals/">Back to Understanding Fundamentals</a>
+  </footer>
+</body>
+</html>
