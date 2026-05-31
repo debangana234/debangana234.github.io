@@ -8,7 +8,7 @@ Upload the following new files and folders into the root of your existing `deban
 - `blog/`
 - `_layouts/`
 - `_posts/`
-- `assets/`
+- `figures/`
 
 Your final repository should look like this:
 
@@ -23,7 +23,7 @@ debangana234.github.io/
 │   └── post.html
 ├── _posts/
 │   └── 2026-05-31-eigenvectors-eigendecomposition-and-pca.md
-└── assets/
+└── figures/
     └── eigenvectors-pca/
         ├── covariance_matrix_equation.png
         ├── eigenvector_direction_visualization.gif
