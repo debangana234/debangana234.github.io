@@ -181,14 +181,10 @@ footer {
     </p>
 
     <h2>Matrices as Transformations</h2>
-
     <p>
       A matrix can be viewed as a <strong>linear transformation</strong> that maps input vectors
-      to output vectors while preserving vector addition and scalar multiplication.
+      to output vectors while preserving vector addition and scalar multiplication. Geometrically, a transformation can:
     </p>
-
-    <p>Geometrically, a transformation can:</p>
-
     <ul>
       <li>Rotate vectors</li>
       <li>Stretch vectors</li>
@@ -210,26 +206,22 @@ footer {
     <p>
       As the number of dimensions increase, tracking the behavior of every vector individually becomes unintuitive and difficult.
     </p>
-
     <figure>
       <img src="assets/eigenvectors-pca/matrix_linear_transformation.gif" width="560" alt="Matrix linear transformation">
       <figcaption>Figure 1: A matrix transforming basis vectors.</figcaption>
     </figure>
-
+    
     <h2>Looking for Structure</h2>
-
     <p>
       Imagine a square sheet of rubber. If we stretch and deform it, every point on the sheet moves differently.
       Trying to track the motion of every point would be overwhelming. Instead, we would naturally look for
       directions along which the deformation behaves predictably.
     </p>
-
     <p>
       Matrices behave in a similar way. Although most vectors change both magnitude and direction under a transformation,
       some special directions behave differently. Along these directions, vectors are only stretched or compressed;
       they do not leave their original line.
     </p>
-
     <p>
       These special directions are called <strong>eigenvector directions</strong>.
       Any vector lying along one of these directions is called an <strong>eigenvector</strong>.
