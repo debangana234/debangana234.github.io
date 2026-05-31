@@ -477,9 +477,10 @@ footer {
     <ol>
       <li>Compute the covariance matrix.</li>
       <li>Perform eigendecomposition.</li>
-      <li>Sort the eigenvectors by decreasing eigenvalue.</li>
+      <li>Sort the eigenvectors by decreasing eigenvalue, i.e. decompose the covariance matrix into eigenvectors and eigenvalues.</li>
       <li>Keep the eigenvectors associated with the largest eigenvalues.</li>
-      <li>Discard the remaining directions.</li>
+      <li>Project the data: express the original data in the principal subspace spanned by the top \(k\) eigenvectors of the covariance matrix.</li>
+      <li>The retained eigenvectors are called the <strong>principal components</strong>. They form a lower-dimensional coordinate system that preserves as much variance as possible while removing the redundant directions.</li>
     </ol>
 
     <p>The retained eigenvectors become the principal components.</p>
