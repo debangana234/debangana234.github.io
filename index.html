@@ -1,1 +1,576 @@
-<a href="/Understanding-Fundamentals/">Understanding Fundamentals</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Debangana Chakraborty, PhD researcher in Computational Biology at University Hospital, RWTH Aachen University.">
+  <title>Debangana Chakraborty | Computational Biology</title>
+  <style>
+    :root {
+      --bg: #fbfbf8;
+      --surface: #ffffff;
+      --surface-strong: #f1f5f4;
+      --ink: #172121;
+      --muted: #5b6b67;
+      --line: #dbe4df;
+      --teal: #0e6f68;
+      --teal-dark: #0a524e;
+      --plum: #62466b;
+      --gold: #b88924;
+      --shadow: 0 18px 45px rgba(23, 33, 33, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(219, 228, 223, 0.65), rgba(251, 251, 248, 0) 360px),
+        var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(219, 228, 223, 0.9);
+      background: rgba(251, 251, 248, 0.9);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 14px 0;
+    }
+
+    .brand {
+      font-size: 0.95rem;
+      font-weight: 750;
+      letter-spacing: 0;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      gap: clamp(2rem, 6vw, 4.5rem);
+      align-items: center;
+      min-height: calc(100vh - 64px);
+      padding: clamp(3rem, 8vw, 5.5rem) 0 3rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0 0 1rem;
+      color: var(--teal-dark);
+      font-size: 0.84rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .eyebrow::before {
+      width: 28px;
+      height: 2px;
+      content: "";
+      background: var(--gold);
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(2.75rem, 6.5vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .hero-summary {
+      max-width: 760px;
+      margin: 1.4rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.24rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 44px;
+      padding: 0.72rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 1px 0 rgba(23, 33, 33, 0.04);
+      color: var(--ink);
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(14, 111, 104, 0.45);
+      background: var(--surface-strong);
+    }
+
+    .button.primary {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      fill: currentColor;
+    }
+
+    .portrait-panel {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .portrait {
+      width: 100%;
+      max-width: 340px;
+      justify-self: end;
+      overflow: hidden;
+      border: 1px solid rgba(219, 228, 223, 0.95);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .portrait img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: #e7eeeb;
+    }
+
+    .affiliation {
+      max-width: 340px;
+      justify-self: end;
+      padding: 1rem;
+      border-left: 4px solid var(--gold);
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    section {
+      padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 0.34fr 0.66fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .research-item,
+    .timeline-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 10px 24px rgba(23, 33, 33, 0.045);
+    }
+
+    .research-item {
+      padding: 1.25rem;
+    }
+
+    .research-item h3,
+    .timeline-item h3 {
+      margin: 0 0 0.45rem;
+      font-size: 1.05rem;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .research-item p,
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .marker {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .research-item:nth-child(2) .marker {
+      background: var(--plum);
+    }
+
+    .research-item:nth-child(3) .marker {
+      background: var(--gold);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 1.25rem;
+      padding: 1.25rem;
+    }
+
+    .date {
+      color: var(--teal-dark);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .contact-band {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(260px, 0.2fr);
+      gap: 2rem;
+      align-items: center;
+      padding: 2rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .contact-band h2 {
+      color: #fff;
+    }
+
+    .contact-band p {
+      margin: 0.75rem 0 0;
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .contact-actions {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .contact-actions .button {
+      width: 100%;
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      box-shadow: none;
+    }
+
+    .contact-actions .button:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 820px) {
+      .nav {
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .hero,
+      .section-heading,
+      .contact-band {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .portrait,
+      .affiliation {
+        justify-self: start;
+        max-width: 280px;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        display: grid;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        gap: 0.7rem;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .contact-band {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="/">Debangana Chakraborty</a>
+      <div class="nav-links">
+        <a href="#research">Research</a>
+        <a href="#background">Background</a>
+        <a href="/Understanding-Fundamentals/">Writing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="intro-title">
+      <div>
+        <p class="eyebrow">Computational Biology PhD Researcher</p>
+        <h1 id="intro-title">Debangana Chakraborty</h1>
+        <p class="hero-summary">
+          I develop mathematical and data-driven computational models for identifying epigenetic networks in blood cancers, working at the intersection of life sciences, informatics, and biomedical data science.
+        </p>
+        <div class="hero-actions" aria-label="Profile links">
+          <a class="button primary" href="mailto:dechakrabort@ukaachen.de">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 3.2v8.8h16V8.2l-7.4 5.2a1 1 0 0 1-1.2 0L4 8.2Zm1.7-1.2 6.3 4.4L18.3 7H5.7Z"/></svg>
+            Email
+          </a>
+          <a class="button" href="https://github.com/debangana234" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.9 2 3.4 1.5.1-.7.4-1.2.7-1.5-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
+            GitHub
+          </a>
+          <a class="button" href="https://www.linkedin.com/in/debangana-chakraborty-1061814a/" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.38-1.85c3.61 0 4.28 2.38 4.28 5.47v6.27h-.02ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.54V9H7.1v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0Z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <aside class="portrait-panel" aria-label="Affiliation">
+        <figure class="portrait">
+          <img src="https://github.com/debangana234.png" alt="Portrait of Debangana Chakraborty">
+        </figure>
+        <div class="affiliation">
+          University Hospital, RWTH Aachen University<br>
+          Institute of Computational Biomedicine and Disease Modelling
+        </div>
+      </aside>
+    </section>
+
+    <section id="research" aria-labelledby="research-title">
+      <div class="section-heading">
+        <h2 id="research-title">Research Focus</h2>
+        <p>
+          My PhD project is co-supervised by Prof. Dr. Thomas Stiehl and Prof. Dr. Wolfgang Wagner at the Institute of Stem Cell Biology, with collaborations across computational biomedicine and life sciences groups at RWTH Aachen.
+        </p>
+      </div>
+
+      <div class="research-grid">
+        <article class="research-item">
+          <span class="marker" aria-hidden="true"></span>
+          <h3>Epigenetic networks</h3>
+          <p>Modeling regulatory patterns in DNA methylation and related epigenetic signals in blood cancer contexts.</p>
+        </article>
+        <article class="research-item">
+          <span class="marker" aria-hidden="true"></span>
+          <h3>Mathematical modeling</h3>
+          <p>Developing interpretable model structures that connect biological questions with computational evidence.</p>
+        </article>
+        <article class="research-item">
+          <span class="marker" aria-hidden="true"></span>
+          <h3>Biomedical data science</h3>
+          <p>Working with complex biological datasets to formulate, test, and refine research hypotheses.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="background" aria-labelledby="background-title">
+      <div class="section-heading">
+        <h2 id="background-title">Background</h2>
+        <p>
+          I bring a blend of research training and industry experience, with a trajectory from database development to bioinformatics and computational biology.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="date">Current</div>
+          <div>
+            <h3>PhD in Computational Biology</h3>
+            <p class="meta">University Hospital, RWTH Aachen University</p>
+            <p>Part of the Institute of Computational Biomedicine and Disease Modelling, collaborating with the Joint Research Computation group and the Centre for Computational Life Sciences.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="date">2025</div>
+          <div>
+            <h3>Master in Bioinformatics</h3>
+            <p class="meta">Saarland University</p>
+            <p>Master thesis: Bioinformatic Analysis of Blood DNA Methylomes to Identify Prodromal Biomarkers Linked to Parkinson's Disease. Supervised by Prof. Dr. Joern Walter and Prof. Dr. Fabian Mueller.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="date">2022-2025</div>
+          <div>
+            <h3>Database Engineer</h3>
+            <p class="meta">Eurodata AG</p>
+            <p>Worked with production data systems while continuing to build domain expertise in bioinformatics and biomedical data analysis.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="date">2016-2018</div>
+          <div>
+            <h3>Database Developer</h3>
+            <p class="meta">Tata Consultancy Services</p>
+            <p>Handled large and complex datasets, an experience that helped shape my interest in biomedical data science.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="date">B.Tech</div>
+          <div>
+            <h3>Information Technology</h3>
+            <p class="meta">Institute of Engineering and Management, West Bengal University of Technology</p>
+            <p>Built the technical foundation that later connected software, data systems, and life science research.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="contact-band">
+        <div>
+          <h2 id="contact-title">Contact</h2>
+          <p>
+            I am interested in scientific questions where computational modeling, biomedical datasets, and life science domain knowledge meet.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="button" href="mailto:dechakrabort@ukaachen.de">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 3.2v8.8h16V8.2l-7.4 5.2a1 1 0 0 1-1.2 0L4 8.2Zm1.7-1.2 6.3 4.4L18.3 7H5.7Z"/></svg>
+            Email
+          </a>
+          <a class="button" href="https://github.com/debangana234" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.9 2 3.4 1.5.1-.7.4-1.2.7-1.5-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
+            GitHub
+          </a>
+          <a class="button" href="https://www.linkedin.com/in/debangana-chakraborty-1061814a/" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.38-1.85c3.61 0 4.28 2.38 4.28 5.47v6.27h-.02ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.54V9H7.1v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0Z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Built as a static GitHub Pages site. <a href="/Understanding-Fundamentals/">Understanding Fundamentals</a>
+  </footer>
+</body>
+</html>
