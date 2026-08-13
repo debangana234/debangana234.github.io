@@ -165,6 +165,57 @@
       margin: 10px 0;
     }
 
+    .updates .project-update {
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 116px;
+      object-fit: cover;
+      background: #ffffff;
+    }
+
+    .project-card-body {
+      padding: 14px 16px 14px 0;
+    }
+
+    .project-card-title {
+      display: block;
+      margin: 3px 0 6px;
+      color: var(--text);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .project-card-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
     .date {
       color: var(--muted);
       font-weight: 700;
@@ -206,6 +257,18 @@
 
       nav a {
         margin: 0;
+      }
+
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card img {
+        height: 170px;
+      }
+
+      .project-card-body {
+        padding: 0 16px 16px;
       }
     }
   </style>
@@ -265,6 +328,16 @@
       <section id="updates" aria-labelledby="updates-title">
         <h2 id="updates-title">Updates</h2>
         <ul class="updates">
+          <li class="project-update">
+            <a class="project-card" href="/masters-thesis/">
+              <img src="masters-thesis/assets/figures/longitudinal-parkinson-progression.png" alt="Study design thumbnail for the Master Thesis project">
+              <span class="project-card-body">
+                <span class="date">Master Thesis project</span>
+                <span class="project-card-title">Bioinformatic analysis of human blood DNA methylomes to identify prodromal biomarkers linked to Parkinson's disease</span>
+                <span class="project-card-text">Project page with study design, methylation analysis, epigenetic age analysis, and predictive modelling results.</span>
+              </span>
+            </a>
+          </li>
           <li><span class="date">22-25 Sept 2026:</span> Will be attending <a href="https://dechema.converia.de/frontend/index.php?folder_id=5096&amp;page_id=" target="_blank" rel="noopener noreferrer">GCB 2026</a>. Will be presenting a <a href="https://dechema.converia.de/frontend/index.php?page_id=18277&amp;additions_conferenceschedule_action=detail&amp;additions_conferenceschedule_controller=paperList&amp;pid=61510&amp;hash=f48fd78848b4f5bbda870f543786146ecbc77bd0d18ddcd26411a865e8927581" target="_blank" rel="noopener noreferrer">poster summary</a> of my Master's thesis.</li>
           <li><span class="date">19-20 June 2026:</span> Visited the <a href="https://xrlab.ikim.nrw/" target="_blank" rel="noopener noreferrer">Smart Extended Reality Lab</a> at <a href="https://www.ikim.uk-essen.de/institute" target="_blank" rel="noopener noreferrer">IKIM Essen</a> as a part of NextBIG eHealth Development Programme.</li>
           <li><span class="date">17.04.2026:</span> Attended <a href="https://bytemal.eu/" target="_blank" rel="noopener noreferrer">ByteMAL 2026</a> at RWTH Aachen.</li>
