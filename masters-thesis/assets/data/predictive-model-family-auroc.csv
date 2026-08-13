@@ -1,0 +1,13 @@
+"Model","Sites_Used","AUROC"
+"Logistic Regression",100,0.5632
+"SVM (Linear Kernel)",100,0.567
+"SVM (Radial Kernel)",100,0.5586
+"Logistic Regression",200,0.5833
+"SVM (Linear Kernel)",200,0.5864
+"SVM (Radial Kernel)",200,0.6126
+"Logistic Regression",300,0.5437
+"SVM (Linear Kernel)",300,0.5483
+"SVM (Radial Kernel)",300,0.6162
+"Logistic Regression",400,0.5426
+"SVM (Linear Kernel)",400,0.5469
+"SVM (Radial Kernel)",400,0.622

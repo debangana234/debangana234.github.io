@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 760" role="img" aria-labelledby="title desc">
+  <title id="title">Methods workflow for the Master's thesis project</title>
+  <desc id="desc">A workflow summarizing 71 TREND participants, 15 years of follow-up, EPIC whole-blood methylation, preprocessing, deconvolution, epigenetic age analysis, differential methylation analysis, enrichment, and validation.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8faf8; }
+      .title { font: 850 38px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #1f252c; }
+      .stat { font: 850 38px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #2f7f72; }
+      .label { font: 800 22px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #1f252c; }
+      .small { font: 850 22px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #000000; }
+      .box { fill: #ffffff; stroke: #7bc1b5; stroke-width: 2; }
+      .accent { fill: #eaf6f3; stroke: #2f7f72; stroke-width: 2.2; }
+      .arrow { stroke: #2f7f72; stroke-width: 5; stroke-linecap: round; }
+      .arrow-head { fill: #2f7f72; }
+      .branch { stroke: #d9e0e7; stroke-width: 2.2; stroke-dasharray: 6 8; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="920" height="760" rx="24"/>
+  <text class="title" x="460" y="58" text-anchor="middle">Methods</text>
+
+  <g transform="translate(70 92)">
+    <rect class="box" width="220" height="126" rx="24"/>
+    <text class="stat" x="110" y="56" text-anchor="middle">71</text>
+    <text class="label" x="110" y="88" text-anchor="middle">participants</text>
+  </g>
+
+  <g transform="translate(350 92)">
+    <rect class="box" width="220" height="126" rx="24"/>
+    <text class="stat" x="110" y="56" text-anchor="middle">15 years</text>
+    <text class="label" x="110" y="88" text-anchor="middle">follow-up</text>
+  </g>
+
+  <g transform="translate(630 92)">
+    <rect class="box" width="220" height="126" rx="24"/>
+    <text class="stat" x="110" y="56" text-anchor="middle">EPIC</text>
+    <text class="label" x="110" y="88" text-anchor="middle">whole-blood DNA</text>
+  </g>
+
+  <g transform="translate(110 260)">
+    <rect class="accent" width="700" height="76" rx="18"/>
+    <text class="label" x="350" y="32" text-anchor="middle">TREND cohort</text>
+    <text class="small" x="350" y="61" text-anchor="middle">longitudinal methylation profiles</text>
+  </g>
+
+  <line class="arrow" x1="460" y1="336" x2="460" y2="383"/>
+  <path class="arrow-head" d="M460 408 L440 378 L480 378 Z"/>
+
+  <g transform="translate(110 408)">
+    <rect class="box" width="700" height="76" rx="18"/>
+    <text class="label" x="350" y="33" text-anchor="middle">Quality control and preprocessing</text>
+    <text class="small" x="350" y="61" text-anchor="middle">harmonized methylation matrix</text>
+  </g>
+
+  <line class="arrow" x1="460" y1="484" x2="460" y2="531"/>
+  <path class="arrow-head" d="M460 556 L440 526 L480 526 Z"/>
+
+  <line class="branch" x1="210" y1="556" x2="710" y2="556"/>
+
+  <g transform="translate(50 556)">
+    <rect class="box" width="220" height="100" rx="18"/>
+    <text class="label" x="110" y="40" text-anchor="middle">Cell-type</text>
+    <text class="label" x="110" y="68" text-anchor="middle">deconvolution</text>
+  </g>
+
+  <g transform="translate(350 556)">
+    <rect class="box" width="220" height="100" rx="18"/>
+    <text class="label" x="110" y="40" text-anchor="middle">Epigenetic</text>
+    <text class="label" x="110" y="68" text-anchor="middle">age analysis</text>
+  </g>
+
+  <g transform="translate(650 556)">
+    <rect class="box" width="220" height="100" rx="18"/>
+    <text class="label" x="110" y="40" text-anchor="middle">Differential</text>
+    <text class="label" x="110" y="68" text-anchor="middle">methylation</text>
+  </g>
+
+  <g transform="translate(110 690)">
+    <rect class="accent" width="700" height="54" rx="18"/>
+    <text class="label" x="350" y="35" text-anchor="middle">Candidate CpGs, GO enrichment, and public-dataset validation</text>
+  </g>
+</svg>

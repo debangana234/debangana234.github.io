@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Master's thesis project page by Debangana Chakraborty on blood DNA methylomes and prodromal Parkinson's disease.">
+  <title>Master's Thesis | Debangana Chakraborty</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f7fa;
+      --surface-soft: #eef2f6;
+      --text: #1f252c;
+      --muted: #5f6b78;
+      --line: #d9e0e7;
+      --link: #1f6f9f;
+      --accent: #2f7f72;
+      --accent-strong: #a94442;
+      --figure-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.68;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 44px 0 56px;
+    }
+
+    .hero {
+      max-width: 920px;
+      margin-bottom: 64px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(1.7rem, 3vw, 2.8rem);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.62;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin: 0;
+      padding: 0;
+      color: var(--muted);
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .meta li:not(:last-child)::after {
+      color: var(--muted);
+      content: "·";
+      margin-left: 10px;
+    }
+
+    .meta strong {
+      color: var(--text);
+    }
+
+    .teaser {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--figure-bg);
+      box-shadow: 0 10px 28px rgba(31, 37, 44, 0.08);
+    }
+
+    .teaser img,
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .contents {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 58px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contents a {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      border: 1px solid var(--line);
+      padding: 5px 12px;
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 6px;
+      font-size: 0.92rem;
+    }
+
+    .contents a:hover {
+      border-color: var(--accent);
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    section {
+      margin: 0 0 64px;
+    }
+
+    .section-grid {
+      display: block;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+      color: var(--accent);
+      font-size: 1.15rem;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 1.08rem;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--text);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .story-list {
+      margin: 14px 0 0;
+      padding-left: 20px;
+    }
+
+    .story-list li {
+      margin: 8px 0;
+    }
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .visual-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 1fr);
+      gap: 20px;
+      align-items: stretch;
+      margin-top: 24px;
+    }
+
+    .visual-summary figure {
+      margin: 0;
+      background: #ffffff;
+      animation: visual-rise 720ms ease both;
+    }
+
+    .visual-summary figure:nth-child(2) {
+      animation-delay: 130ms;
+    }
+
+    .visual-summary img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+    .visual-summary .methods-figure {
+      padding: 0;
+    }
+
+    .visual-summary .methods-figure img {
+      min-height: 560px;
+      max-height: 640px;
+    }
+
+    .question-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 18px 16px;
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(31, 37, 44, 0.06);
+      animation: question-rise 650ms ease both;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .question-card::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent), var(--link));
+      content: "";
+      transform: scaleY(0);
+      transform-origin: top;
+      animation: accent-grow 700ms ease both;
+    }
+
+    .question-card::after {
+      position: absolute;
+      top: -45%;
+      left: -60%;
+      width: 42%;
+      height: 190%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), transparent);
+      content: "";
+      transform: rotate(18deg) translateX(-120%);
+      animation: question-sheen 2.8s ease 550ms both;
+      pointer-events: none;
+    }
+
+    .question-card:nth-child(2) {
+      animation-delay: 140ms;
+    }
+
+    .question-card:nth-child(3) {
+      animation-delay: 280ms;
+    }
+
+    .question-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(47, 127, 114, 0.45);
+      box-shadow: 0 16px 34px rgba(31, 37, 44, 0.1);
+    }
+
+    .question-card h3 {
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .question-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .question-card li {
+      margin: 9px 0;
+    }
+
+    @keyframes question-rise {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes visual-rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes accent-grow {
+      to {
+        transform: scaleY(1);
+      }
+    }
+
+    @keyframes question-sheen {
+      0% {
+        transform: rotate(18deg) translateX(-130%);
+      }
+      45%,
+      100% {
+        transform: rotate(18deg) translateX(430%);
+      }
+    }
+
+    @keyframes node-pop {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes node-sheen {
+      0%,
+      58% {
+        transform: translateX(-120%);
+      }
+      100% {
+        transform: translateX(120%);
+      }
+    }
+
+    @keyframes link-flow {
+      to {
+        background-position: -220% 0;
+      }
+    }
+
+    @keyframes dmp-pulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.04);
+      }
+    }
+
+    @keyframes zoom-flow {
+      to {
+        background-position: 0 -220%;
+      }
+    }
+
+    @keyframes boxplot-rise {
+      from {
+        opacity: 0;
+        transform: translateX(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes takeaway-slide {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes stage-flow-rise {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes formula-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    figure {
+      margin: 24px 0 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--figure-bg);
+      box-shadow: 0 10px 28px rgba(31, 37, 44, 0.08);
+    }
+
+    .two-figures {
+      display: grid;
+      grid-template-columns: 1fr 0.78fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .compact-figure {
+      width: min(560px, 100%);
+    }
+
+    .medium-figure {
+      width: min(760px, 100%);
+    }
+
+    .dataset-showcase {
+      display: grid;
+      grid-template-columns: minmax(360px, 0.95fr) minmax(320px, 1.05fr);
+      gap: 22px;
+      align-items: stretch;
+      margin: 22px 0 26px;
+    }
+
+    .dataset-showcase figure {
+      margin: 0;
+      animation: question-rise 650ms ease both;
+    }
+
+    .dataset-showcase img {
+      width: 100%;
+    }
+
+    .dataset-showcase .dataset-plot {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .dataset-showcase .dataset-plot img {
+      height: auto;
+    }
+
+    .dataset-copy {
+      border-left: 4px solid var(--accent);
+      padding-left: 20px;
+      animation: question-rise 650ms ease 160ms both;
+    }
+
+    .dataset-copy .lead {
+      margin-bottom: 12px;
+    }
+
+    .dataset-showcase:hover figure {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(31, 37, 44, 0.1);
+    }
+
+    .result-sequence {
+      display: grid;
+      gap: 20px;
+      margin-top: 24px;
+      counter-reset: result-step;
+    }
+
+    .result-pair {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.72fr) minmax(460px, 1.28fr);
+      gap: 26px;
+      align-items: stretch;
+      max-width: 1080px;
+    }
+
+    .result-step {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px 20px 20px 72px;
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(31, 37, 44, 0.06);
+      animation: question-rise 650ms ease both;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .result-step::before {
+      counter-increment: result-step;
+      content: counter(result-step);
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .result-step::after {
+      content: "";
+      position: absolute;
+      top: 58px;
+      left: 36px;
+      width: 2px;
+      height: calc(100% - 74px);
+      background: linear-gradient(180deg, rgba(47, 127, 114, 0.34), rgba(47, 127, 114, 0));
+    }
+
+    .result-step:nth-child(2) {
+      animation-delay: 140ms;
+    }
+
+    .result-step:nth-child(3) {
+      animation-delay: 280ms;
+    }
+
+    .result-step:hover {
+      transform: translateY(-4px);
+      border-color: rgba(47, 127, 114, 0.4);
+      box-shadow: 0 16px 34px rgba(31, 37, 44, 0.1);
+    }
+
+    .result-step h3 {
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+
+    .result-step figure {
+      margin-top: 16px;
+      background: #fff;
+    }
+
+    .result-step.volcano-step figure {
+      width: min(560px, 100%);
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .result-step.volcano-step {
+      justify-self: end;
+      width: 100%;
+    }
+
+    .longitudinal-results {
+      margin-top: 22px;
+    }
+
+    .longitudinal-results .result-step figure {
+      width: min(960px, 100%);
+    }
+
+    .longitudinal-results .model-formula {
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+
+    .epigenetic-results .result-step {
+      padding-top: 18px;
+      padding-bottom: 18px;
+    }
+
+    .epigenetic-results {
+      counter-reset: result-step 1;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .epigenetic-results .result-step figure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 430px;
+      margin-top: 12px;
+      width: 100%;
+    }
+
+    .epigenetic-results img {
+      width: 100%;
+      max-height: 430px;
+      object-fit: contain;
+    }
+
+    .epigenetic-performance {
+      margin-top: 22px;
+    }
+
+    .epigenetic-performance .result-step {
+      padding-bottom: 18px;
+    }
+
+    .clock-performance-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .clock-performance-grid figure {
+      margin: 0;
+      background: #fff;
+    }
+
+    .clock-performance-grid img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .epigenetic-table {
+      margin-top: 18px;
+    }
+
+    .epigenetic-table table {
+      min-width: 0;
+      font-size: 0.94rem;
+    }
+
+    .epigenetic-table th:first-child {
+      width: 24%;
+    }
+
+    .result-pair .result-step {
+      padding: 16px;
+    }
+
+    .result-pair .result-step::before,
+    .result-pair .result-step::after {
+      display: none;
+    }
+
+    .result-pair .result-step h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .result-pair .result-step p {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .logic-diagram {
+      display: grid;
+      grid-template-columns: 1fr 64px 1fr;
+      grid-template-rows: auto 56px auto;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbfa 100%);
+    }
+
+    .stage-node {
+      position: relative;
+      overflow: hidden;
+      min-height: 52px;
+      border: 1px solid rgba(31, 37, 44, 0.15);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      padding: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      line-height: 1.2;
+      text-align: center;
+      color: var(--text);
+      box-shadow: 0 8px 18px rgba(31, 37, 44, 0.06);
+      animation: node-pop 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .stage-node::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.45) 44%, transparent 72%);
+      transform: translateX(-120%);
+      animation: node-sheen 2.8s ease-in-out infinite;
+    }
+
+    .stage-node.early {
+      background: #bfdde8;
+    }
+
+    .stage-node.pre {
+      background: #eab6c3;
+      animation-delay: 110ms;
+    }
+
+    .stage-node.late {
+      background: #3dc9c9;
+      animation-delay: 220ms;
+    }
+
+    .stage-node.post {
+      background: #ec7f75;
+      animation-delay: 330ms;
+    }
+
+    .comparison-link {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 34px;
+      color: #4b5d73;
+      font-weight: 800;
+      font-size: 0.76rem;
+      text-align: center;
+    }
+
+    .comparison-link::before,
+    .comparison-link::after {
+      content: "";
+      position: absolute;
+      background: linear-gradient(90deg, #4b5d73, #9aa6b2, #4b5d73);
+      background-size: 220% 100%;
+      animation: link-flow 1.9s linear infinite;
+    }
+
+    .comparison-link:not(.primary)::before,
+    .comparison-link:not(.primary)::after {
+      display: none;
+    }
+
+    .comparison-link.horizontal::before {
+      width: 100%;
+      height: 2px;
+      top: 50%;
+      left: 0;
+    }
+
+    .comparison-link.vertical::before {
+      width: 2px;
+      height: 100%;
+      top: 0;
+      left: 50%;
+    }
+
+    .comparison-link span {
+      position: relative;
+      z-index: 1;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: #fff;
+    }
+
+    .comparison-link.primary {
+      color: #9f1f2e;
+    }
+
+    .comparison-link.primary::before {
+      height: 4px;
+      background: linear-gradient(90deg, #2563eb, #f8fafc, #dc2626, #f8fafc, #2563eb);
+      background-size: 260% 100%;
+      box-shadow: 0 0 12px rgba(220, 38, 38, 0.22);
+      animation: link-flow 1.35s linear infinite;
+    }
+
+    .comparison-link.primary span {
+      border: 1px solid rgba(220, 38, 38, 0.25);
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.12);
+      animation: dmp-pulse 1.8s ease-in-out infinite;
+    }
+
+    .result-step.heatmap-step figure {
+      width: min(1080px, 100%);
+    }
+
+    .dmp-zoom-panel {
+      display: grid;
+      grid-template-columns: minmax(520px, 1.08fr) 34px minmax(430px, 0.92fr);
+      gap: 16px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .dmr-zoom-panel {
+      grid-template-columns: minmax(460px, 0.9fr) 34px minmax(520px, 1.1fr);
+    }
+
+    .dmp-zoom-panel figure {
+      margin-top: 0;
+    }
+
+    .dmp-heatmap-focus img {
+      width: 100%;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 26px rgba(31, 37, 44, 0.07);
+    }
+
+    .dmr-overview-heatmap img {
+      min-height: 680px;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .zoom-connector {
+      position: relative;
+      height: 180px;
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-weight: 900;
+      animation: question-rise 650ms ease 160ms both;
+    }
+
+    .zoom-connector::before {
+      content: "";
+      width: 4px;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #2563eb, #f8fafc, #dc2626);
+      background-size: 100% 220%;
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.18), 0 0 16px rgba(220, 38, 38, 0.18);
+      animation: zoom-flow 1.4s linear infinite;
+    }
+
+    .boxplot-frame {
+      max-height: 560px;
+      overflow-y: auto;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbfa 100%);
+      box-shadow: inset 0 -18px 24px rgba(31, 37, 44, 0.035);
+      scroll-snap-type: y proximity;
+      animation: question-rise 650ms ease 260ms both;
+    }
+
+    .boxplot-card {
+      border: 1px solid rgba(31, 37, 44, 0.1);
+      border-radius: 8px;
+      padding: 6px;
+      background: #fff;
+      scroll-snap-align: start;
+      box-shadow: 0 8px 18px rgba(31, 37, 44, 0.06);
+      animation: boxplot-rise 650ms ease both;
+    }
+
+    .boxplot-card + .boxplot-card {
+      margin-top: 10px;
+    }
+
+    .boxplot-card:nth-child(2) {
+      animation-delay: 90ms;
+    }
+
+    .boxplot-card:nth-child(3) {
+      animation-delay: 180ms;
+    }
+
+    .boxplot-card:nth-child(4) {
+      animation-delay: 270ms;
+    }
+
+    .boxplot-card img {
+      width: 100%;
+      display: block;
+      max-width: 100%;
+    }
+
+    .dmr-region-frame {
+      max-height: 620px;
+    }
+
+    .dmr-region-card {
+      background: #fff;
+      padding: 6px;
+    }
+
+    .combined-rank-intro {
+      margin-bottom: 18px;
+    }
+
+    .combined-rank-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+      counter-reset: result-step;
+    }
+
+    .combined-rank-gallery .result-step {
+      min-height: 100%;
+    }
+
+    .combined-rank-gallery figure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 410px;
+      margin-top: 12px;
+      background: #fff;
+    }
+
+    .combined-rank-gallery img {
+      width: 100%;
+      max-height: 410px;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 26px rgba(31, 37, 44, 0.07);
+    }
+
+    .combined-rank-gallery .wide-plot {
+      grid-column: 1 / -1;
+    }
+
+    .combined-rank-gallery .wide-plot figure {
+      min-height: 410px;
+    }
+
+    .combined-rank-gallery .wide-plot img {
+      max-height: 410px;
+    }
+
+    .predictive-model-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+      counter-reset: result-step;
+    }
+
+    .predictive-model-gallery .result-step {
+      min-height: 100%;
+    }
+
+    .predictive-model-gallery figure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 420px;
+      margin-top: 12px;
+      background: #fff;
+    }
+
+    .predictive-model-gallery img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 26px rgba(31, 37, 44, 0.07);
+    }
+
+    .predictive-model-gallery .wide-plot {
+      grid-column: 1 / -1;
+    }
+
+    .predictive-model-gallery .wide-plot figure {
+      min-height: 300px;
+    }
+
+    .predictive-model-gallery .wide-plot img {
+      max-height: 320px;
+    }
+
+    .model-table-scroll {
+      max-height: 360px;
+      overflow: auto;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(31, 37, 44, 0.07);
+    }
+
+    .model-table {
+      width: 100%;
+      min-width: 920px;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .model-table th,
+    .model-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .model-table th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #2f4858;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .model-table td {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .model-table tbody tr:nth-child(even) {
+      background: #f7f9fb;
+    }
+
+    .model-table .selected-model {
+      background: #e8f2f7;
+    }
+
+    .model-table .selected-model td {
+      font-weight: 800;
+    }
+
+    .takeaway-panel {
+      border: 1px solid rgba(47, 127, 114, 0.22);
+      border-radius: 8px;
+      padding: 18px 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #f5faf8 100%);
+      box-shadow: 0 12px 28px rgba(31, 37, 44, 0.07);
+      animation: question-rise 650ms ease both;
+    }
+
+    .takeaway-panel h3 {
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .takeaway-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .takeaway-list li {
+      margin: 9px 0;
+      animation: takeaway-slide 620ms ease both;
+    }
+
+    .takeaway-list li:nth-child(2) {
+      animation-delay: 90ms;
+    }
+
+    .takeaway-list li:nth-child(3) {
+      animation-delay: 180ms;
+    }
+
+    .takeaway-list li:nth-child(4) {
+      animation-delay: 270ms;
+    }
+
+    .takeaway-list li:nth-child(5) {
+      animation-delay: 360ms;
+    }
+
+    .takeaway-highlight {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-left: 3px solid #bf4a5f;
+      border-radius: 6px;
+      background: #fff3f5;
+      color: #46242d;
+      font-weight: 800;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+      counter-reset: summary-point;
+    }
+
+    .summary-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+      border: 1px solid rgba(47, 127, 114, 0.24);
+      border-radius: 8px;
+      padding: 54px 18px 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f5faf8 100%);
+      box-shadow: 0 12px 28px rgba(31, 37, 44, 0.07);
+      animation: takeaway-slide 680ms ease both;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .summary-card::before {
+      counter-increment: summary-point;
+      content: counter(summary-point);
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .summary-card::after {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(47, 127, 114, 0.1) 42%, transparent 72%);
+      content: "";
+      transform: translateX(-120%);
+      animation: question-sheen 1200ms ease both;
+    }
+
+    .summary-card:nth-child(2) {
+      animation-delay: 100ms;
+    }
+
+    .summary-card:nth-child(3) {
+      animation-delay: 200ms;
+    }
+
+    .summary-card:nth-child(4) {
+      animation-delay: 300ms;
+    }
+
+    .summary-card:nth-child(5) {
+      animation-delay: 400ms;
+    }
+
+    .summary-card:nth-child(6) {
+      animation-delay: 500ms;
+    }
+
+    .summary-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(47, 127, 114, 0.44);
+      box-shadow: 0 16px 34px rgba(31, 37, 44, 0.1);
+    }
+
+    .stage-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .stage-flow span,
+    .stage-flow strong {
+      animation: stage-flow-rise 560ms ease both;
+    }
+
+    .stage-flow span {
+      border: 1px solid rgba(47, 127, 114, 0.24);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #ffffff;
+      color: #1f252c;
+      box-shadow: 0 8px 18px rgba(31, 37, 44, 0.06);
+    }
+
+    .stage-flow strong {
+      color: var(--accent-strong);
+      font-size: 1rem;
+    }
+
+    .stage-flow .stage-flow-peak {
+      border-color: rgba(191, 74, 95, 0.34);
+      background: #fff3f5;
+      color: #9d2f42;
+    }
+
+    .stage-flow > :nth-child(1) {
+      animation-delay: 80ms;
+    }
+
+    .stage-flow > :nth-child(2) {
+      animation-delay: 140ms;
+    }
+
+    .stage-flow > :nth-child(3) {
+      animation-delay: 200ms;
+    }
+
+    .stage-flow > :nth-child(4) {
+      animation-delay: 260ms;
+    }
+
+    .stage-flow > :nth-child(5) {
+      animation-delay: 320ms;
+    }
+
+    .stage-flow > :nth-child(6) {
+      animation-delay: 380ms;
+    }
+
+    .stage-flow > :nth-child(7) {
+      animation-delay: 440ms;
+    }
+
+    .longitudinal-story {
+      margin-top: 18px;
+    }
+
+    .model-formula {
+      margin: 22px 0 0;
+      padding: 12px 14px;
+      border-left: 3px solid var(--accent-strong);
+      background: #f7fbfa;
+      color: #1f252c;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 0.98rem;
+      font-weight: 700;
+      animation: formula-reveal 650ms ease both;
+    }
+
+    .paired-figures {
+      display: grid;
+      grid-template-columns: minmax(330px, 0.82fr) minmax(440px, 1.18fr);
+      gap: 22px;
+      align-items: start;
+      margin-top: 24px;
+      width: min(1080px, 100%);
+    }
+
+    .paired-figures figure {
+      margin-top: 0;
+    }
+
+    .callout {
+      margin-top: 18px;
+      border-left: 3px solid var(--accent-strong);
+      padding: 2px 0 2px 16px;
+      color: var(--muted);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+    }
+
+    th,
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--accent);
+      font-weight: 800;
+      background: var(--surface-soft);
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td strong {
+      color: var(--text);
+    }
+
+    footer {
+      margin-top: 72px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 860px) {
+      .two-figures,
+      .paired-figures,
+      .dataset-showcase,
+      .visual-summary,
+      .epigenetic-results,
+      .clock-performance-grid,
+      .result-pair,
+      .combined-rank-gallery,
+      .predictive-model-gallery,
+      .summary-grid,
+      .dmp-zoom-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .combined-rank-gallery .wide-plot,
+      .predictive-model-gallery .wide-plot {
+        grid-column: auto;
+      }
+
+      .zoom-connector {
+        height: 54px;
+      }
+
+      .zoom-connector::before {
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #2563eb, #f8fafc, #dc2626);
+        background-size: 220% 100%;
+      }
+
+      .boxplot-frame {
+        max-height: 520px;
+      }
+
+      .question-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-step {
+        padding-left: 62px;
+      }
+
+      .logic-diagram {
+        grid-template-columns: 1fr 58px 1fr;
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .stage-node {
+        font-size: 0.82rem;
+      }
+
+      h1 {
+        font-size: 2.45rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .visual-summary figure,
+      .question-card {
+        animation: none;
+      }
+
+      .question-card::before,
+      .question-card::after {
+        animation: none;
+      }
+
+      .question-card:hover {
+        transform: none;
+      }
+
+      .result-step {
+        animation: none;
+      }
+
+      .result-step:hover {
+        transform: none;
+      }
+
+      .stage-node,
+      .stage-node::after,
+      .comparison-link::before,
+      .comparison-link.primary span,
+      .zoom-connector,
+      .zoom-connector::before,
+      .boxplot-frame,
+      .boxplot-card,
+      .takeaway-panel,
+      .takeaway-list li {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main>
+      <section class="hero" aria-labelledby="project-title">
+        <div>
+          <p class="eyebrow">Master's thesis project</p>
+          <h1 id="project-title">Bioinformatic analysis of human blood DNA methylomes to identify prodromal biomarkers linked to Parkinson's disease</h1>
+          <ul class="meta">
+            <li><a href="https://debangana234.github.io/">Debangana Chakraborty</a></li>
+            <li><a href="https://www.researchgate.net/profile/Thomas-Hentrich">Thomas Hentrich</a></li>
+            <li><a href="https://www.uni-saarland.de/fakultaet/nt/profs-gruppen/professuren/biowissenschaften/juniorprofessor-dr-fabian-mueller.html">Fabian Müller</a></li>
+            <li><a href="https://www.uni-saarland.de/lehrstuhl/walter.html">Jörn Walter</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <ul class="contents" aria-label="Contents">
+        <li><a href="#overview">Abstract</a></li>
+        <li><a href="#research-questions">Research Question</a></li>
+        <li><a href="#datasets">Dataset table</a></li>
+        <li><a href="#deconvolution">Reference deconvolution</a></li>
+        <li><a href="#longitudinal">Longitudinal cell composition</a></li>
+        <li><a href="#epigenetic-age">Epigenetic age analysis</a></li>
+        <li><a href="#dmp-dmr">Differential methylation</a></li>
+        <li><a href="#predictive-modelling">Predictive modelling</a></li>
+        <li><a href="#summary">Summary</a></li>
+      </ul>
+
+      <section id="overview" class="section-grid">
+        <h2>Abstract</h2>
+        <div>
+          <p>Peripheral blood DNA methylation is a promising source of molecular biomarkers for Parkinson's disease, but it remains unclear whether disease-associated methylation alterations are already detectable during the prodromal phase. This project used longitudinal whole-blood Illumina EPIC methylation profiles from the TREND cohort to study methylation and immune-composition changes across healthy controls, prodromal converters, and clinically diagnosed Parkinson's disease patients.</p>
+          <p>The analysis combined reference-based cell-type deconvolution, epigenetic age acceleration, differential methylation analysis, DMR analysis, functional enrichment, and validation in public Parkinson's disease methylation datasets. The results link immune-composition shifts, epigenetic variation, and disease progression, supporting peripheral blood DNA methylation as a potential marker of early Parkinson's disease-associated molecular alterations.</p>
+        </div>
+      </section>
+
+      <section id="visual-summary" class="section-grid">
+        <h2>Study design</h2>
+        <div class="visual-summary">
+          <figure>
+            <img src="assets/figures/longitudinal-parkinson-progression.png" alt="Longitudinal progression from healthy control through prodromal Parkinson's disease to clinical Parkinson's disease">
+          </figure>
+          <figure class="methods-figure">
+            <img src="assets/figures/methods-workflow-polished.svg" alt="Methods workflow showing TREND cohort, EPIC methylation profiling, preprocessing, downstream analyses, enrichment, and validation">
+          </figure>
+        </div>
+      </section>
+
+      <section id="research-questions" class="section-grid">
+        <h2>Research Questions</h2>
+        <div class="question-grid">
+          <article class="question-card">
+            <h3>Cell Type Proportions</h3>
+            <ul>
+              <li>How does the cell-type proportion vary in Parkinson's disease compared to controls?</li>
+              <li>How do cell-type proportions change in diagnosed individuals compared to individuals in the pre-clinical stage of the disease?</li>
+              <li>Are the observations coherent with findings from other literature?</li>
+            </ul>
+          </article>
+
+          <article class="question-card">
+            <h3>Epigenetic Age</h3>
+            <ul>
+              <li>How does epigenetic age versus chronological age vary in Parkinson's disease patients with respect to controls?</li>
+              <li>How does epigenetic age acceleration vary between the individual groups?</li>
+              <li>What is the correlation of epigenetic age acceleration with disease status and cell-type proportions?</li>
+            </ul>
+          </article>
+
+          <article class="question-card">
+            <h3>Differential Methylation</h3>
+            <ul>
+              <li>How does methylation at individual CpG sites vary between the individual groups?</li>
+              <li>Are there groups of CpG sites that show a patterned methylation difference between the individual groups?</li>
+              <li>How does methylation vary in significant CpG sites in public datasets and other studies?</li>
+              <li>Can a set of differentially methylated CpG sites from TREND predict disease status with fair accuracy in other datasets?</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="datasets" class="section-grid">
+        <h2>Datasets</h2>
+        <div>
+          <div class="dataset-showcase">
+            <figure class="dataset-plot">
+              <img src="assets/figures/trend-longitudinal-dataset-polished.png" alt="Longitudinal TREND participant plot showing control and converter sampling across age">
+            </figure>
+            <div class="dataset-copy">
+              <p class="lead">The dataset was organized around the idea that Parkinson's disease develops over time, with molecular changes potentially detectable in blood before clinical diagnosis.</p>
+              <p>The primary <a href="https://www.trend-studie.de/english/the-trend-study/">TREND dataset</a> followed participants across different disease-related stages. Controls were represented at early, mid, and late time points, while converters contributed samples before and after conversion to Parkinson's disease. This structure made it possible to compare stable control trajectories with individuals moving through a prodromal phase into clinically defined disease.</p>
+              <p>The longitudinal staging was important for the thesis because blood DNA methylation can capture both disease-associated epigenetic alterations and changes in immune-cell composition. By separating late controls, pre-converters, and post-converters, we could ask whether cell composition and methylation patterns already shift before diagnosis.</p>
+            </div>
+          </div>
+
+          <div class="table-wrap" role="region" aria-label="Dataset summary table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Dataset</th>
+                  <th>Role in thesis</th>
+                  <th>Sample summary</th>
+                  <th>Design / groups</th>
+                  <th>Data type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>TREND</strong></td>
+                  <td>Primary discovery cohort</td>
+                  <td>136 whole-blood samples from 52 participants</td>
+                  <td>Early controls, mid-stage controls, late controls, pre-converters, post-converters, and already-diagnosed PD samples</td>
+                  <td>Illumina EPIC whole-blood DNA methylation</td>
+                </tr>
+                <tr>
+                  <td><strong><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111629">GSE111629</a></strong></td>
+                  <td>External validation dataset</td>
+                  <td>572 whole-blood samples: 335 Parkinson's disease and 237 controls</td>
+                  <td>Cross-sectional PD versus control validation</td>
+                  <td>Public whole-blood DNA methylation cohort</td>
+                </tr>
+                <tr>
+                  <td><strong><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE145361">GSE145361</a></strong></td>
+                  <td>External validation dataset</td>
+                  <td>1889 whole-blood samples: 959 Parkinson's disease and 930 controls</td>
+                  <td>Large cross-sectional PD versus control validation</td>
+                  <td>Public whole-blood DNA methylation cohort</td>
+                </tr>
+                <tr>
+                  <td><strong>Combined public validation metadata</strong></td>
+                  <td>Model validation and reproducibility check</td>
+                  <td>2459 samples across public cohorts</td>
+                  <td>1293 Parkinson's disease samples and 1166 controls</td>
+                  <td>Harmonized methylation metadata with cell-type estimates</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="deconvolution" class="section-grid">
+        <h2>Reference deconvolution</h2>
+        <div>
+          <p>The deconvolution step used the <a href="https://bioconductor.org/packages//release/data/experiment/manuals/FlowSorted.Blood.EPIC/man/FlowSorted.Blood.EPIC.pdf">EPIC reference dataset</a>, which provides methylation signatures from purified blood-cell types, to estimate cell-type proportions in each whole-blood sample.</p>
+          <div class="paired-figures">
+            <figure>
+              <img src="assets/figures/reference-deconvolution-matrix.svg" alt="Reference-based deconvolution matrix equation">
+            </figure>
+            <figure>
+              <img src="assets/figures/reference-celltype-proportions.png" alt="Estimated blood-cell type proportions across TREND stages">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="longitudinal" class="section-grid">
+        <h2>Longitudinal composition</h2>
+        <div>
+          <ul class="story-list">
+            <li>Immune-cell proportions were compared as converters moved from the pre-diagnosis period to the post-diagnosis period.</li>
+            <li>Samples were aligned to the diagnosis date because participants were diagnosed at different ages.</li>
+            <li>The analysis focused on whether monocytes, NK cells, and neutrophils changed consistently around conversion.</li>
+          </ul>
+          <div class="result-sequence longitudinal-results">
+            <article class="result-step">
+              <h3>Diagnosis aligned cell proportion</h3>
+              <figure>
+                <img src="assets/figures/longitudinal-cell-composition.png" alt="Longitudinal transition of blood-cell type proportions across TREND stages">
+              </figure>
+            </article>
+            <article class="result-step">
+              <h3>Mixed-model stage effect</h3>
+              <div class="model-formula">Neu ~ stage + age + sex + (1 | TREND.ID)</div>
+              <figure>
+                <img src="assets/figures/cell-composition-mixed-model-results.png" alt="Mixed-model estimated cell-composition changes across TREND stages for neutrophils, lymphocytes, and neutrophil-to-lymphocyte ratio">
+              </figure>
+            </article>
+          </div>
+          <article class="takeaway-panel longitudinal-story">
+            <h3>Key takeaways</h3>
+            <ol class="takeaway-list">
+              <li>
+                The cellular-composition pattern does not appear to follow a simple linear stage order; instead, it suggests a rise toward the pre-converter stage followed by a decrease after diagnosis.
+                <div class="stage-flow" aria-label="Cellular-composition pattern across TREND stages">
+                  <span>Early control</span>
+                  <strong>&lt;</strong>
+                  <span>Late control</span>
+                  <strong>&lt;</strong>
+                  <span class="stage-flow-peak">Pre-converter</span>
+                  <strong>&gt;</strong>
+                  <span>Post-converter</span>
+                </div>
+              </li>
+              <li>Mixed models were fitted with age, sex, and a subject-specific random intercept to account for repeated measurements from the same TREND participants.</li>
+              <li>The categorical stage effect remained significant for neutrophils, lymphocyte proportion, and the neutrophil-to-lymphocyte ratio.</li>
+              <li class="takeaway-highlight">The strongest pattern appeared around the pre-converter stage, where neutrophils increased while total lymphocyte proportion decreased.</li>
+              <li>Post-diagnosis samples should be interpreted cautiously because treatment after diagnosis could also contribute to inflammatory changes.</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section id="epigenetic-age" class="section-grid">
+        <h2>Epigenetic age analysis</h2>
+        <div>
+          <p>The Horvath clock was used to estimate DNA methylation age and calculate epigenetic age acceleration as the residual variation after accounting for chronological age.</p>
+          <p>The analysis tested whether age acceleration and immune-cell composition varied with disease stage and whether these variables explained structured differences between samples.</p>
+          <div class="result-sequence epigenetic-performance">
+            <article class="result-step">
+              <h3>Horvath clock performance</h3>
+              <div class="clock-performance-grid">
+                <figure>
+                  <img src="assets/figures/horvath-clock-performance-trend.png" alt="Horvath clock performance across TREND stages">
+                </figure>
+                <figure>
+                  <img src="assets/figures/horvath-clock-performance-horvath-dataset.png" alt="Horvath clock performance in the Horvath public Parkinson's disease dataset">
+                </figure>
+              </div>
+            </article>
+          </div>
+          <div class="result-sequence longitudinal-results epigenetic-results">
+            <article class="result-step">
+              <h3>Horvath EAA by stage</h3>
+              <figure>
+                <img src="assets/figures/epigenetic-age-acceleration-stage-boxplot.png" alt="Boxplot of Horvath epigenetic age acceleration across TREND stages">
+              </figure>
+            </article>
+            <article class="result-step">
+              <h3>PCA biplot of EAA and cell types</h3>
+              <figure>
+                <img src="assets/figures/epigenetic-age-celltype-pca-biplot.png" alt="PCA biplot of Horvath epigenetic age acceleration and blood-cell type proportions">
+              </figure>
+            </article>
+          </div>
+          <div class="table-wrap epigenetic-table" role="region" aria-label="Epigenetic age analysis key takeaway table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Observation</th>
+                  <th>Interpretation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Clock performance</strong></td>
+                  <td>The Horvath clock explained less age-prediction variation in converter or Parkinson's disease samples than in controls, suggesting that converter biology may contain nonlinear disease-associated variation not captured by chronological age alone.</td>
+                </tr>
+                <tr>
+                  <td><strong>Stage effect</strong></td>
+                  <td>Disease stage alone did not fully explain epigenetic age acceleration, so EAA should not be interpreted as a simple stage-only signal.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cell composition</strong></td>
+                  <td>The PCA biplot suggests that EAA varies together with immune-cell composition; increased neutrophil contribution aligns with increased Horvath EAA.</td>
+                </tr>
+                <tr>
+                  <td><strong>Key message</strong></td>
+                  <td>Epigenetic age acceleration appears to reflect an interplay between disease stage and immune-cell composition rather than a single isolated disease-stage effect.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="dmp-dmr" class="section-grid">
+        <h2>Differential Methylation Analysis</h2>
+        <div>
+          <p>Differential methylation analysis was used to compare methylation levels between TREND stages. The stage-wise comparison showed that the late-control versus post-converter contrast yielded 91 differentially methylated positions compared with the other tested contrasts.</p>
+
+          <div class="result-sequence">
+            <div class="result-pair">
+              <article class="result-step logic-step">
+                <h3>Comparison Logic</h3>
+                <p>Pairwise stage comparisons identified 91 DMPs only in the late-control versus post-converter contrast.</p>
+                <div class="logic-diagram" aria-label="Pairwise differential methylation comparison logic across TREND stages">
+                  <div class="stage-node early">early_control</div>
+                  <div class="comparison-link horizontal"><span>0 DMPs</span></div>
+                  <div class="stage-node pre">PreConverter</div>
+                  <div class="comparison-link vertical"><span>0 DMPs</span></div>
+                  <div></div>
+                  <div class="comparison-link vertical"><span>0 DMPs</span></div>
+                  <div class="stage-node late">late_control</div>
+                  <div class="comparison-link horizontal primary"><span>91 DMPs</span></div>
+                  <div class="stage-node post">PostConverter</div>
+                </div>
+              </article>
+
+              <article class="result-step volcano-step">
+                <h3>Volcano Plot</h3>
+                <p>CpG-level effect sizes and significance, with hypermethylated DMPs in red and hypomethylated DMPs in blue.</p>
+                <figure>
+                  <img src="assets/figures/dmp-volcano-polished.png" alt="Volcano plot showing significant and non-significant CpG sites">
+                </figure>
+              </article>
+            </div>
+
+            <article class="result-step heatmap-step">
+              <h3>DMP and site-level methylation</h3>
+              <p>The DMP heatmap focuses only on the late-control versus post-converter comparison from which the 91 DMPs were identified. The heatmap uses beta methylation values between 0 and 1, with hypomethylated sites shown in blue and hypermethylated sites shown in red.</p>
+              <div class="dmp-zoom-panel">
+                <figure class="dmp-heatmap-focus dmr-overview-heatmap">
+                  <img src="assets/figures/dmp-heatmap-latepost-tight.png" alt="DMP heatmap for late-control versus post-converter samples using beta values from 0 to 1">
+                </figure>
+                <div class="zoom-connector" aria-hidden="true"></div>
+                <div class="boxplot-frame" aria-label="Scrollable boxplots for selected DMP CpG sites">
+                  <figure class="boxplot-card">
+                    <img src="assets/figures/dmp-site-cg19000186.png" alt="Boxplot for hypomethylated CpG cg19000186 in CNGA1">
+                  </figure>
+                  <figure class="boxplot-card">
+                    <img src="assets/figures/dmp-site-cg11821245.png" alt="Boxplot for hypomethylated CpG cg11821245 in LDHC">
+                  </figure>
+                  <figure class="boxplot-card">
+                    <img src="assets/figures/dmp-site-cg09775972.png" alt="Boxplot for hypermethylated CpG cg09775972 in OR4K1">
+                  </figure>
+                  <figure class="boxplot-card">
+                    <img src="assets/figures/dmp-site-cg17316096.png" alt="Boxplot for hypermethylated CpG cg17316096 in PTPRN2">
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <article class="result-step heatmap-step">
+              <h3>DMR Heatmap</h3>
+              <p>The heatmap on the left represents the average methylation across all CpGs associated with each DMR and is labelled by the gene associated with that region. The scrollable zoom panel shows individual methylation levels at neighbouring CpGs within selected DMRs, using the <em>LDHC</em>-associated region as a hypomethylated example and the <em>ACAP1</em>-associated region as a hypermethylated example.</p>
+              <div class="dmp-zoom-panel dmr-zoom-panel">
+                <figure class="dmp-heatmap-focus">
+                  <img src="assets/figures/dmr-heatmap-beta-polished.png" alt="DMR-level methylation heatmap for late control versus post-converter samples using beta values from 0 to 1">
+                </figure>
+                <div class="zoom-connector" aria-hidden="true"></div>
+                <div class="boxplot-frame dmr-region-frame" aria-label="Scrollable CpG-level methylation plots for selected DMR regions">
+                  <figure class="boxplot-card dmr-region-card">
+                    <img src="assets/figures/dmr-region-ldhc-thesis.png" alt="CpG-level methylation pattern for the LDHC-associated hypomethylated DMR">
+                  </figure>
+                  <figure class="boxplot-card dmr-region-card">
+                    <img src="assets/figures/dmr-region-acap1-thesis.png" alt="CpG-level methylation pattern for the ACAP1-associated hypermethylated DMR">
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <article class="takeaway-panel">
+              <h3>Key takeaways</h3>
+              <ol class="takeaway-list">
+                <li>The zoomed CpGs include <em>CNGA1</em>, which is associated with retinitis pigmentosa and has been reported in a PD context through co-occurrence with an <em>SNCAIP</em> mutation, and <em>LDHC</em>, whose paralog <em>LDHA</em> has been linked to metabolic alterations in idiopathic PD.</li>
+                <li class="takeaway-highlight">The <em>PTPRN2</em>-linked CpG is biologically relevant because <em>PTPRN2</em> has been associated with PD in previous studies, including reports of altered methylation in PD brain tissue.</li>
+                <li class="takeaway-highlight">The same CpG sites appear more uniform in the Horvath and Vallerga datasets, suggesting that the TREND-specific DMP signal is not strongly replicated, although beta-value distributions remain broadly comparable.</li>
+                <li>DMR-level analysis showed that methylation changes were coordinated across CpGs for 11 regions, which provides more interpretability than isolated DMPs.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="combined-rank-cpgs" class="section-grid">
+        <h2>Combined-Rank CpGs</h2>
+        <div>
+          <p class="combined-rank-intro">The genes from the 12 DMRs did not provide enrichment. Therefore, to increase the gene set, additional CpG sites were selected using CombinedRank, a rank assigned to each CpG site based on both adjusted p-values and logFC values. The top 500 CpGs selected by this rank were used for Gene Ontology enrichment using g:Profiler.</p>
+
+          <div class="combined-rank-gallery">
+            <article class="result-step">
+              <h3>PCA of top 500 CpGs</h3>
+              <figure>
+                <img src="assets/figures/combined-rank-pca.png" alt="PCA of the top 500 combined-rank CpG sites">
+              </figure>
+            </article>
+
+            <article class="result-step">
+              <h3>GO enrichment of top 500 CpGs</h3>
+              <figure>
+                <img src="assets/figures/combined-rank-go-enrichment.png" alt="Gene Ontology enrichment bubble plot for combined-rank CpGs">
+              </figure>
+            </article>
+
+            <article class="result-step wide-plot">
+              <h3>KEGG analysis</h3>
+              <figure>
+                <img src="assets/figures/combined-rank-kegg.png" alt="KEGG pathway enrichment plot for combined-rank CpG genes">
+              </figure>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="predictive-modelling" class="section-grid">
+        <h2>Predictive Modelling in Unseen Datasets</h2>
+        <div>
+          <p class="combined-rank-intro">Predictive modelling was used to test whether methylation signatures could classify Parkinson's disease status in independent public methylation datasets. Logistic regression, SVM with linear kernel, and SVM with radial kernel were compared across 100 to 400 CpG sites; the best follow-up model combined 200 highly variable CpGs with estimated cell-type proportions.</p>
+
+          <div class="predictive-model-gallery">
+            <article class="result-step wide-plot">
+              <h3>Model performance table</h3>
+              <div class="model-table-scroll" role="region" aria-label="Scrollable model performance table" tabindex="0">
+                <table class="model-table">
+                  <thead>
+                    <tr>
+                      <th>Model</th>
+                      <th>Sites Used</th>
+                      <th>Accuracy</th>
+                      <th>Sensitivity</th>
+                      <th>Specificity</th>
+                      <th>AUROC</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Logistic Regression</td>
+                      <td>100</td>
+                      <td>0.6069</td>
+                      <td>0.5510</td>
+                      <td>0.6511</td>
+                      <td>0.5632</td>
+                    </tr>
+                    <tr>
+                      <td>SVM (Linear Kernel)</td>
+                      <td>100</td>
+                      <td>0.6130</td>
+                      <td>0.5665</td>
+                      <td>0.6550</td>
+                      <td>0.5670</td>
+                    </tr>
+                    <tr>
+                      <td>SVM (Radial Kernel)</td>
+                      <td>100</td>
+                      <td>0.6048</td>
+                      <td>0.5350</td>
+                      <td>0.6860</td>
+                      <td>0.5586</td>
+                    </tr>
+                    <tr>
+                      <td>Logistic Regression</td>
+                      <td>200</td>
+                      <td>0.6162</td>
+                      <td>0.5843</td>
+                      <td>0.6325</td>
+                      <td>0.5833</td>
+                    </tr>
+                    <tr>
+                      <td>SVM (Linear Kernel)</td>
+                      <td>200</td>
+                      <td>0.6023</td>
+                      <td>0.5628</td>
+                      <td>0.6406</td>
+                      <td>0.5864</td>
+                    </tr>
+                    <tr>
+                      <td>SVM (Radial Kernel)</td>
+                      <td>200</td>
+                      <td>0.6276</td>
+                      <td>0.4672</td>
+                      <td>0.7783</td>
+                      <td>0.6126</td>
+                    </tr>
+                    <tr>
+                      <td>Logistic Regression</td>
+                      <td>300</td>
+                      <td>0.5826</td>
+                      <td>0.5534</td>
+                      <td>0.6040</td>
+                      <td>0.5437</td>
+                    </tr>
+                    <tr>
+                      <td>SVM (Linear Kernel)</td>
+                      <td>300</td>
+                      <td>0.5762</td>
+                      <td>0.5230</td>
+                      <td>0.6243</td>
+                      <td>0.5483</td>
+                    </tr>
+                    <tr>
+                      <td>SVM (Radial Kernel)</td>
+                      <td>300</td>
+                      <td>0.6213</td>
+                      <td>0.4372</td>
+                      <td>0.7860</td>
+                      <td>0.6162</td>
+                    </tr>
+                    <tr>
+                      <td>Logistic Regression</td>
+                      <td>400</td>
+                      <td>0.5901</td>
+                      <td>0.5736</td>
+                      <td>0.5962</td>
+                      <td>0.5426</td>
+                    </tr>
+                    <tr>
+                      <td>SVM (Linear Kernel)</td>
+                      <td>400</td>
+                      <td>0.5724</td>
+                      <td>0.5570</td>
+                      <td>0.5852</td>
+                      <td>0.5469</td>
+                    </tr>
+                    <tr>
+                      <td>SVM (Radial Kernel)</td>
+                      <td>400</td>
+                      <td>0.6019</td>
+                      <td>0.3213</td>
+                      <td>0.8562</td>
+                      <td>0.6220</td>
+                    </tr>
+                    <tr class="selected-model">
+                      <td>LASSO logistic regression + cell types</td>
+                      <td>200</td>
+                      <td>0.6540</td>
+                      <td>0.8130</td>
+                      <td>0.4780</td>
+                      <td>0.7130</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="result-step">
+              <h3>Confusion matrix for CpGs + cell types</h3>
+              <figure>
+                <img src="assets/figures/predictive-modeling-confusion-matrix.png" alt="Confusion matrix for the selected predictive model">
+              </figure>
+            </article>
+
+            <article class="result-step">
+              <h3>ROC AUC curve for CpGs + cell types</h3>
+              <figure>
+                <img src="assets/figures/predictive-modeling-roc-curve.png" alt="ROC curve for the selected predictive model">
+              </figure>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="summary" class="section-grid">
+        <h2>Summary</h2>
+        <div>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <p>Innate immune-cell shifts were prominent around the prodromal and pre-converter phase.</p>
+            </article>
+            <article class="summary-card">
+              <p>Higher CD4+ and CD8+ T-cell proportions were linked to lower epigenetic age acceleration, while higher neutrophil proportions correlated with higher EAA, suggesting an immune-aging axis in PD.</p>
+            </article>
+            <article class="summary-card">
+              <p>The late-control versus post-converter comparison identified 91 differentially methylated positions in TREND.</p>
+            </article>
+            <article class="summary-card">
+              <p>Region-level methylation patterns supported a structured epigenetic transition across TREND stages.</p>
+            </article>
+            <article class="summary-card">
+              <p>Although exact replication across datasets was limited, beta-value distributions across TREND DMPs were similar in the Horvath and Vallerga datasets, suggesting possible underlying PD-related mechanisms.</p>
+            </article>
+            <article class="summary-card">
+              <p>GABAergic signalling enrichment suggests that selected CpG sites may be functionally relevant, but larger cohorts are required for robust biomarker validation.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+</body>
+</html>

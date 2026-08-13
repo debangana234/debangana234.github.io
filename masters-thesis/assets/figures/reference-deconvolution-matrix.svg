@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 520" role="img" aria-labelledby="title desc">
+  <title id="title">Reference-based deconvolution matrix equation</title>
+  <desc id="desc">Whole-blood methylation matrix B with dimensions m CpGs by n samples is approximated by reference signature matrix S with dimensions m CpGs by k cell types multiplied by proportion matrix P with dimensions k cell types by n samples.</desc>
+  <defs>
+    <style>
+      .title { font: 800 30px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #1f252c; }
+      .label { font: 800 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #1f252c; }
+      .dim { font: 650 17px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #2f7f72; }
+      .note { font: 500 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #5f6b78; }
+      .symbol { font: 800 46px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #2f3b46; }
+      .panel { fill: #ffffff; stroke: #d9e0e7; stroke-width: 2.2; }
+      .cell { stroke: #ffffff; stroke-width: 1.4; }
+      .legend { font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #5f6b78; }
+    </style>
+  </defs>
+
+  <rect width="980" height="520" rx="20" fill="#f8fafc"/>
+  <text x="34" y="44" class="title">Reference-based deconvolution</text>
+
+  <g transform="translate(42 130)">
+    <text x="70" y="-22" class="label">B</text>
+    <rect class="panel" width="205" height="205" rx="12"/>
+    <text x="28" y="236" class="dim">m CpGs × n samples</text>
+    <text x="36" y="263" class="note">mixed whole-blood methylation</text>
+    <g transform="translate(28 28)">
+      <rect class="cell" x="0" y="0" width="30" height="30" fill="#b7d7e4"/>
+      <rect class="cell" x="30" y="0" width="30" height="30" fill="#f7f8fb"/>
+      <rect class="cell" x="60" y="0" width="30" height="30" fill="#c55c70"/>
+      <rect class="cell" x="90" y="0" width="30" height="30" fill="#f2d0d6"/>
+      <rect class="cell" x="120" y="0" width="30" height="30" fill="#dcebf0"/>
+      <rect class="cell" x="0" y="30" width="30" height="30" fill="#ecb6c2"/>
+      <rect class="cell" x="30" y="30" width="30" height="30" fill="#d7ecf1"/>
+      <rect class="cell" x="60" y="30" width="30" height="30" fill="#276a9f"/>
+      <rect class="cell" x="90" y="30" width="30" height="30" fill="#f7f8fb"/>
+      <rect class="cell" x="120" y="30" width="30" height="30" fill="#eab6c3"/>
+      <rect class="cell" x="0" y="60" width="30" height="30" fill="#e2eef3"/>
+      <rect class="cell" x="30" y="60" width="30" height="30" fill="#a9323a"/>
+      <rect class="cell" x="60" y="60" width="30" height="30" fill="#c7dce7"/>
+      <rect class="cell" x="90" y="60" width="30" height="30" fill="#eab6c3"/>
+      <rect class="cell" x="120" y="60" width="30" height="30" fill="#bfdde8"/>
+      <rect class="cell" x="0" y="90" width="30" height="30" fill="#f7f8fb"/>
+      <rect class="cell" x="30" y="90" width="30" height="30" fill="#b6d3e0"/>
+      <rect class="cell" x="60" y="90" width="30" height="30" fill="#e78e96"/>
+      <rect class="cell" x="90" y="90" width="30" height="30" fill="#dcebf0"/>
+      <rect class="cell" x="120" y="90" width="30" height="30" fill="#ec7f75"/>
+      <rect class="cell" x="0" y="120" width="30" height="30" fill="#c65b6c"/>
+      <rect class="cell" x="30" y="120" width="30" height="30" fill="#f3d8dd"/>
+      <rect class="cell" x="60" y="120" width="30" height="30" fill="#bad8e5"/>
+      <rect class="cell" x="90" y="120" width="30" height="30" fill="#f7f8fb"/>
+      <rect class="cell" x="120" y="120" width="30" height="30" fill="#276a9f"/>
+    </g>
+  </g>
+
+  <text x="292" y="250" class="symbol">≈</text>
+
+  <g transform="translate(360 130)">
+    <text x="72" y="-22" class="label">S</text>
+    <rect class="panel" width="205" height="205" rx="12"/>
+    <text x="22" y="236" class="dim">m CpGs × k cell types</text>
+    <text x="25" y="263" class="note">EPIC reference signatures</text>
+    <g transform="translate(28 28)">
+      <rect class="cell" x="0" y="0" width="30" height="30" fill="#b7d7e4"/>
+      <rect class="cell" x="30" y="0" width="30" height="30" fill="#3dc9c9"/>
+      <rect class="cell" x="60" y="0" width="30" height="30" fill="#eab6c3"/>
+      <rect class="cell" x="90" y="0" width="30" height="30" fill="#ec7f75"/>
+      <rect class="cell" x="0" y="30" width="30" height="30" fill="#d7ecf1"/>
+      <rect class="cell" x="30" y="30" width="30" height="30" fill="#78dbdb"/>
+      <rect class="cell" x="60" y="30" width="30" height="30" fill="#f1cbd4"/>
+      <rect class="cell" x="90" y="30" width="30" height="30" fill="#f19b93"/>
+      <rect class="cell" x="0" y="60" width="30" height="30" fill="#a9cfdc"/>
+      <rect class="cell" x="30" y="60" width="30" height="30" fill="#34b7b9"/>
+      <rect class="cell" x="60" y="60" width="30" height="30" fill="#e5a8b8"/>
+      <rect class="cell" x="90" y="60" width="30" height="30" fill="#e56d66"/>
+      <rect class="cell" x="0" y="90" width="30" height="30" fill="#cce4ec"/>
+      <rect class="cell" x="30" y="90" width="30" height="30" fill="#58d0d0"/>
+      <rect class="cell" x="60" y="90" width="30" height="30" fill="#edbdc9"/>
+      <rect class="cell" x="90" y="90" width="30" height="30" fill="#ee8e86"/>
+      <rect class="cell" x="0" y="120" width="30" height="30" fill="#bddbe6"/>
+      <rect class="cell" x="30" y="120" width="30" height="30" fill="#40c4c5"/>
+      <rect class="cell" x="60" y="120" width="30" height="30" fill="#eab6c3"/>
+      <rect class="cell" x="90" y="120" width="30" height="30" fill="#ec7f75"/>
+    </g>
+  </g>
+
+  <text x="610" y="250" class="symbol">×</text>
+
+  <g transform="translate(690 130)">
+    <text x="72" y="-22" class="label">P</text>
+    <rect class="panel" width="205" height="205" rx="12"/>
+    <text x="22" y="236" class="dim">k cell types × n samples</text>
+    <text x="27" y="263" class="note">estimated proportions</text>
+    <g transform="translate(44 28)">
+      <rect class="cell" x="0" y="0" width="32" height="30" fill="#b7d7e4"/>
+      <rect class="cell" x="32" y="0" width="32" height="30" fill="#bddbe6"/>
+      <rect class="cell" x="64" y="0" width="32" height="30" fill="#accfdd"/>
+      <rect class="cell" x="0" y="30" width="32" height="30" fill="#3dc9c9"/>
+      <rect class="cell" x="32" y="30" width="32" height="30" fill="#55d0d0"/>
+      <rect class="cell" x="64" y="30" width="32" height="30" fill="#38bfc0"/>
+      <rect class="cell" x="0" y="60" width="32" height="30" fill="#eab6c3"/>
+      <rect class="cell" x="32" y="60" width="32" height="30" fill="#eec4ce"/>
+      <rect class="cell" x="64" y="60" width="32" height="30" fill="#e6a8b8"/>
+      <rect class="cell" x="0" y="90" width="32" height="30" fill="#ec7f75"/>
+      <rect class="cell" x="32" y="90" width="32" height="30" fill="#ef958e"/>
+      <rect class="cell" x="64" y="90" width="32" height="30" fill="#e76d66"/>
+      <rect class="cell" x="0" y="120" width="32" height="30" fill="#bfdde8"/>
+      <rect class="cell" x="32" y="120" width="32" height="30" fill="#3dc9c9"/>
+      <rect class="cell" x="64" y="120" width="32" height="30" fill="#ec7f75"/>
+    </g>
+  </g>
+
+  <g transform="translate(42 455)">
+    <text class="legend" x="0" y="0">m = CpG sites</text>
+    <text class="legend" x="160" y="0">n = whole-blood samples</text>
+    <text class="legend" x="385" y="0">k = reference blood-cell types</text>
+  </g>
+</svg>
