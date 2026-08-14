@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservoir Sampling</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+:root {
+  --text: #222;
+  --muted: #666;
+  --border: #e5e7eb;
+  --link: #0969da;
+  --bg-soft: #f6f8fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.65;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 22px;
+  color: var(--text);
+  background: #fff;
+}
+
+nav {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+nav a {
+  margin-right: 1rem;
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+}
+
+h1 {
+  margin-bottom: 0.25rem;
+}
+
+h2 {
+  margin-top: 2.4rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3rem;
+}
+
+h3 {
+  margin-top: 2rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-top: 0;
+}
+
+.post-meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+blockquote {
+  border-left: 4px solid var(--border);
+  margin-left: 0;
+  padding-left: 1rem;
+  color: #444;
+  background: #fafafa;
+}
+
+.math-display {
+  text-align: center;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+}
+
+.note {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+  background: var(--bg-soft);
+}
+
+pre {
+  overflow-x: auto;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+code {
+  background: var(--bg-soft);
+  padding: 0.15rem 0.3rem;
+  border-radius: 4px;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+</style>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script async id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+</head>
+
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/blog/understanding-fundamentals-in-science/">Understanding fundamentals in science</a>
+  </nav>
+
+  <article>
+    <h1>Reservoir Sampling</h1>
+    <p class="post-meta">Algorithms · Sampling · Genomic homology search · 14 August 2026</p>
+
+    <p>
+      Reservoir sampling is useful when we want a fixed-size random sample from a stream that is too large to store.
+      I came across this problem while thinking about large-scale genomic homology search, where the number of possible
+      sequence pairs can easily reach tens of billions.
+    </p>
+
+    <h2>The Genomic Search Problem</h2>
+    <p>
+      Suppose we have two collections of fixed-length genomic sequences:
+    </p>
+
+    <div class="math-display">
+      \[
+        A = \{a_1, a_2, \ldots, a_{n_1}\}, \qquad
+        B = \{b_1, b_2, \ldots, b_{n_2}\}.
+      \]
+    </div>
+
+    <p>
+      Every sequence contains \(k\) base pairs. In one application, \(n_1\) was approximately 700,000 and
+      \(n_2\) was approximately 70,000. Comparing every sequence in \(A\) with every sequence in \(B\)
+      therefore gives
+    </p>
+
+    <div class="math-display">
+      \[
+        700{,}000 \times 70{,}000 = 49{,}000{,}000{,}000
+      \]
+    </div>
+
+    <p>
+      possible sequence pairs.
+    </p>
+
+    <p>
+      For a pair \((a_i, b_j)\), define the homology score as the fraction of matching base positions:
+    </p>
+
+    <div class="math-display">
+      \[
+        h(a_i,b_j) =
+        \frac{\text{number of matching base pairs between }a_i\text{ and }b_j}{k}.
+      \]
+    </div>
+
+    <p>
+      If two sequences of length 22 match at 18 positions, their homology score is \(18/22 \approx 0.818\).
+      Since all sequences have the same length, the score is simple to compute. The challenge is the number
+      of comparisons.
+    </p>
+
+    <h2>The Problem</h2>
+    <p>
+      The downstream analysis did not require storing all 49 billion pairs. The goal was to keep at most
+      10,000 sequence pairs from each homology interval:
+    </p>
+
+    <ul>
+      <li>\(h &lt; 0.3\)</li>
+      <li>\(0.3 \le h &lt; 0.4\)</li>
+      <li>\(0.4 \le h &lt; 0.5\)</li>
+      <li>\(0.5 \le h &lt; 0.6\)</li>
+      <li>\(0.6 \le h &lt; 0.7\)</li>
+      <li>\(0.7 \le h &lt; 0.8\)</li>
+      <li>\(0.8 \le h \le 0.9\)</li>
+      <li>\(h &gt; 0.9\)</li>
+    </ul>
+
+    <p>
+      This means the final dataset contains at most \(8 \times 10{,}000 = 80{,}000\) pairs.
+      A naive strategy would store all pairs in a bin and sample 10,000 at the end. That becomes wasteful if
+      a bin contains hundreds of millions of pairs.
+    </p>
+
+    <blockquote>
+      The question is: how can we select 10,000 uniformly random pairs from a very large stream without storing
+      the whole stream?
+    </blockquote>
+
+    <h2>The Reservoir Sampling Idea</h2>
+    <p>
+      Suppose elements arrive one at a time:
+    </p>
+
+    <div class="math-display">
+      \[
+        x_1, x_2, x_3, \ldots, x_N.
+      \]
+    </div>
+
+    <p>
+      We want exactly \(K\) elements, sampled uniformly without replacement, but \(N\) may be very large
+      or unknown in advance. Reservoir sampling keeps only a fixed-size collection of \(K\) elements.
+      This collection is the reservoir.
+    </p>
+
+    <ol>
+      <li>Store the first \(K\) elements directly.</li>
+      <li>When the \(i\)-th element arrives, where \(i &gt; K\), keep it with probability \(K/i\).</li>
+      <li>If it is kept, replace one existing reservoir element chosen uniformly at random.</li>
+      <li>If it is not kept, discard it.</li>
+    </ol>
+
+    <pre><code>reservoir = []
+count = 0
+
+for element in stream:
+    count = count + 1
+
+    if count <= K:
+        reservoir.append(element)
+    else:
+        j = U(1, count)  # generate a uniform random integer
+
+        if j <= K:
+            replace reservoir[j] with element</code></pre>
+
+    <h2>A Small Example</h2>
+    <p>
+      Let \(K = 2\), and suppose the stream is \(A, B, C\). The first two elements fill the reservoir:
+    </p>
+
+    <div class="math-display">
+      \[
+        R = [A, B].
+      \]
+    </div>
+
+    <p>
+      When \(C\) arrives, it enters the reservoir with probability \(2/3\). If it enters, it replaces either
+      \(A\) or \(B\) with probability \(1/2\). Therefore:
+    </p>
+
+    <div class="math-display">
+      \[
+        P(C\text{ replaces }A) = \frac{2}{3}\times\frac{1}{2} = \frac{1}{3},
+      \]
+      \[
+        P(C\text{ replaces }B) = \frac{1}{3}.
+      \]
+    </div>
+
+    <p>
+      The final reservoir can be \(\{A,B\}\), \(\{A,C\}\), or \(\{B,C\}\). Each occurs with probability \(1/3\).
+      That is exactly uniform sampling of two elements from three.
+    </p>
+
+    <h2>Why It Works</h2>
+    <p>
+      After processing \(i\) elements, reservoir sampling guarantees that every element seen so far has probability
+      \(K/i\) of being in the reservoir.
+    </p>
+
+    <p>
+      The base case is direct. After the first \(K\) elements, all \(K\) are stored, so each has probability
+      \(K/K = 1\).
+    </p>
+
+    <p>
+      Now assume that after processing \(i\) elements, each old element has probability \(K/i\) of being stored.
+      When element \(x_{i+1}\) arrives, the reservoir already contains \(K\) elements. At this point, any old
+      element in the reservoir can have one of two outcomes: it can survive this new step, or it can be replaced
+      by the incoming element.
+    </p>
+
+    <ul>
+      <li>
+        First, the incoming element \(x_{i+1}\) must be selected from the stream. This happens with probability
+        \(K/(i+1)\).
+      </li>
+      <li>
+        If the incoming element is selected, it has to replace one of the \(K\) elements already present in the
+        reservoir.
+      </li>
+      <li>
+        The replacement is uniform. Therefore, each old reservoir element has probability \(1/K\) of being chosen
+        for replacement.
+      </li>
+      <li>
+        So, for a particular old element to be replaced, two events must occur together: the new element must enter
+        the reservoir, and that specific old element must be selected for replacement.
+      </li>
+    </ul>
+
+    <p>
+      Therefore, the probability that any particular old element is replaced is:
+    </p>
+
+    <div class="math-display">
+      \[
+        \frac{K}{i+1} \times \frac{1}{K} = \frac{1}{i+1}.
+      \]
+    </div>
+
+    <p>
+      Its probability of surviving is therefore \(1 - 1/(i+1) = i/(i+1)\). The probability that an old element
+      remains in the reservoir becomes
+    </p>
+
+    <div class="math-display">
+      \[
+        \frac{K}{i} \times \frac{i}{i+1} = \frac{K}{i+1}.
+      \]
+    </div>
+
+    <p>
+      The new element and every old element therefore have the same probability \(K/(i+1)\) of being present.
+      This is the central idea.
+    </p>
+
+    <h2>Using One Reservoir Per Homology Bin</h2>
+    <p>
+      In the homology search, every evaluated pair is assigned to one of the eight score bins. Instead of storing
+      all pairs in a bin, we keep one reservoir per bin:
+    </p>
+
+    <div class="math-display">
+      \[
+        R_1, R_2, \ldots, R_8.
+      \]
+    </div>
+
+    <p>
+      Each reservoir has capacity 10,000. Each bin also needs its own counter, because the replacement probability
+      depends on how many qualifying pairs have been seen for that bin.
+    </p>
+
+    <p>
+      For example, if a pair has \(h(a_i,b_j)=0.74\), it belongs to the \(0.7 \le h &lt; 0.8\) bin.
+      The counter for that bin is incremented. If the reservoir is not full, the pair is stored. If the reservoir
+      is already full, the pair is kept with probability
+    </p>
+
+    <div class="math-display">
+      \[
+        \frac{10{,}000}{\text{number of pairs seen so far in that bin}}.
+      \]
+    </div>
+
+    <p>
+      If a bin eventually contains 100,000,000 qualifying pairs, every pair in that bin has probability
+      \(10{,}000/100{,}000{,}000 = 0.0001\) of appearing in the final sample. The probability is small, but it is
+      the same for every pair in that bin.
+    </p>
+
+    <h2>What Reservoir Sampling Improves</h2>
+    <p>
+      Reservoir sampling does not remove the need to compute homology scores. If every pair in \(A \times B\)
+      is still evaluated, the search still requires \(O(n_1n_2)\) pairwise comparisons for fixed \(k\).
+    </p>
+
+    <p>
+      However, reservoir sampling improves memory. Without it, all qualifying pairs from a dense bin would need
+      to be stored before sampling. With reservoir sampling, only \(K\) pairs are stored per bin, so memory remains
+      fixed even when the bin contains millions or billions of pairs.
+    </p>
+
+    <div class="note">
+      <strong>In short:</strong> reservoir sampling does not make a rare high-homology pair easier to find.
+      It makes it possible to keep a uniform sample from a very large stream once qualifying pairs are observed.
+    </div>
+
+    <h2>Discovery Versus Sampling</h2>
+    <p>
+      Dense and sparse homology bins create different problems. In a dense bin, qualifying pairs are easy to find
+      but too numerous to store. Reservoir sampling is well suited to this case.
+    </p>
+
+    <p>
+      In a sparse high-homology bin, the problem is different. We may want 10,000 pairs, but qualifying pairs may
+      be rare. Reservoir sampling cannot solve that discovery problem.
+    </p>
+
+    <h2>Takeaway</h2>
+    <p>
+      Reservoir sampling is a simple way to sample uniformly from a stream while using fixed memory. Early elements
+      enter the reservoir easily but face many future chances of replacement. Later elements enter with lower probability
+      but have fewer future chances of being replaced. These two effects balance exactly.
+    </p>
+
+    <p>
+      For large-scale genomic homology search, this distinction matters. The exhaustive search may still be computationally
+      expensive, but the sampled output can remain small, balanced across homology intervals, and statistically meaningful.
+    </p>
+  </article>
+
+  <footer></footer>
+</body>
+</html>
